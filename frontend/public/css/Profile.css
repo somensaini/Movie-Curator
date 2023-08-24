@@ -1,0 +1,9 @@
+main {
+    margin: 0;
+}
+
+.poster {
+    height: 200px;
+    width: 125px;
+    border-radius: 6px;
+}

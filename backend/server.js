@@ -1,0 +1,73 @@
+require('dotenv').config()
+const express = require('express')
+const app = express();
+const path = require('path')
+const { logger, logEvents } = require('./middleware/logger')
+const errorHandler = require('./middleware/errorHandler')
+const cookieParser = require('cookie-parser')
+const cors = require('cors')
+const corsOptions = require('./config/corsOptions')
+const connectDB = require('./config/database')
+const mongoose = require('mongoose')
+const PORT = process.env.PORT || 3500
+
+// Console log the port
+console.log(process.env.NODE_ENV)
+
+//Connect To Database
+connectDB()
+
+app.use(logger)
+
+app.use(cors(corsOptions))
+
+// Use the JSON middleware function built into Express. It parses incoming JSON requests and puts the parsed data in req.body
+app.use(express.json())
+
+// Parse cookies
+app.use(cookieParser())
+
+//Use .env file in config folder
+// dotenv.config({ path: "./config/.env" })
+
+// This will send the user all static files in the public directory when they are on the root page
+app.use(express.static('public'))
+
+// This will respond to any path that starts with '/' regardless of the HTTP request and it will use the root.js router
+app.use('/', require('./routes/root'))
+app.use('/user', require('./routes/userRoutes'))
+// app.use('/list', require('./routes/listRoutes'))
+// app.use('/search', require('./routes/searchRoutes'))
+
+// For all other cases it will send the 404 page
+app.all('*', (req, res) => {
+  res.status(404)
+  if (req.accepts('html')) {
+      res.sendFile(path.join(__dirname, 'views', '404.html'))
+  } else if (req.accepts('json')) {
+      res.json({ message: '404 Not Found' })
+  } else {
+      res.type('txt').send('404 Not Found')
+  }
+})
+
+//Using EJS for views
+// app.set("view engine", "react");
+
+//Body Parsing
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
+
+app.use(errorHandler)
+
+// Console log when connected and if any errors occur
+// The event will only be called once
+mongoose.connection.once('open', () => {
+    console.log('Connected to MongoDB')
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+})
+
+mongoose.connection.on('error', err => {
+    console.log(err)
+    logEvents(`${err.no}: ${err.code}\t${err.syscall}\t${err.hostname}`, 'mongoErrLog.log')
+})
