@@ -10,7 +10,7 @@ const corsOptions = require('./config/corsOptions')
 const connectDB = require('./config/database')
 const mongoose = require('mongoose')
 const PORT = process.env.PORT || 3500
-
+const bodyParser = require("body-parser")
 // Console log the port
 console.log(process.env.NODE_ENV)
 
@@ -26,6 +26,7 @@ app.use(express.json())
 
 // Parse cookies
 app.use(cookieParser())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 //Use .env file in config folder
 // dotenv.config({ path: "./config/.env" })

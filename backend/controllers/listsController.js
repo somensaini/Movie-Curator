@@ -6,6 +6,7 @@ const asyncHandler = require('express-async-handler')
 const getOneList = asyncHandler(async (req, res) => {
     // Get a user's list from MongoDB
     const list = await List.find().lean()
+    //Filter results to user's id 
 
     // If no users 
     // if (!users?.length) {
@@ -26,6 +27,17 @@ const createNewList = asyncHandler(async (req, res) => {
         return res.status(201).json({ message: 'New list created' })
     } else {
         return res.status(400).json({ message: 'Invalid list data received' })
+    }
+})
+
+const addNewList = asyncHandler(async (req, res) => {
+    const { movieId, id } = req.body
+
+
+    if (updatedList) { // Created 
+        return res.status(201).json({ message: 'New Movie created' })
+    } else {
+        return res.status(400).json({ message: 'Invalid movie data received' })
     }
 })
 
@@ -50,5 +62,6 @@ const deleteList = asyncHandler(async (req, res) => {
 module.exports = {
     getOneList,
     createNewList,
+    addNewList,
     deleteList
 }

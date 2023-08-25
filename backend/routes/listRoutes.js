@@ -5,7 +5,7 @@ const listsController = require('../controllers/listsController')
 router.route('/')
     .get(listsController.getOneList)
     .post(listsController.createNewList)
-    // .patch(listsController.updateList)
+    .patch(listsController.addNewList)
     .delete(listsController.deleteList)
 
 module.exports = router
