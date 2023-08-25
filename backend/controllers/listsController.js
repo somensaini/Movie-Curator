@@ -27,10 +27,28 @@ const createNewList = asyncHandler(async (req, res) => {
     } else {
         return res.status(400).json({ message: 'Invalid list data received' })
     }
+})
 
+// Delete a list
+const deleteList = asyncHandler(async (req, res) => {
+    const { id } = req.body
+
+    // Confirm note exists to delete 
+    const list = await List.findById(id).exec()
+
+    if (!list) {
+        return res.status(400).json({ message: 'List not found' })
+    }
+
+    const result = await list.deleteOne()
+
+    const reply = `List deleted`
+
+    res.json(reply)
 })
 
 module.exports = {
     getOneList,
-    createNewList
+    createNewList,
+    deleteList
 }
