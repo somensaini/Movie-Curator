@@ -18,7 +18,7 @@ const getOneList = asyncHandler(async (req, res) => {
 
 // Create a user's list
 const createNewList = asyncHandler(async (req, res) => {
-    const { user } = req.body
+    const { user, movieList } = req.body
 
     // Create and store the new user 
     const list = await List.create({ user })
@@ -30,14 +30,16 @@ const createNewList = asyncHandler(async (req, res) => {
     }
 })
 
-const addNewList = asyncHandler(async (req, res) => {
-    const { movieId, id } = req.body
-
-
-    if (updatedList) { // Created 
-        return res.status(201).json({ message: 'New Movie created' })
-    } else {
-        return res.status(400).json({ message: 'Invalid movie data received' })
+// Add an entry to a user's list
+const updateList = asyncHandler(async (req, res) => {
+    try {
+        await List.updateOne(
+            {_id: req.body.id},
+            {$push: {movieList: {movieId: 6}}} //this is hard coded
+        )
+        return res.status(201).json({ message: 'Entry updated' })
+    } catch (err) {
+            console.log(err);
     }
 })
 
@@ -62,6 +64,6 @@ const deleteList = asyncHandler(async (req, res) => {
 module.exports = {
     getOneList,
     createNewList,
-    addNewList,
+    updateList,
     deleteList
 }
