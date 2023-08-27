@@ -32,12 +32,13 @@ const createNewList = asyncHandler(async (req, res) => {
 
 // Add an entry to a user's list
 const updateList = asyncHandler(async (req, res) => {
+    const { id, movieId } = req.body
     try {
         await List.updateOne(
-            {_id: req.body.id},
-            {$push: {movieList: {movieId: 6}}} //this is hard coded
+            {_id: id},
+            {$push: {movieList: {movieId: movieId}}}
         )
-        return res.status(201).json({ message: 'Entry updated' })
+        return res.status(201).json({ message: "The movie was added to the user's database." })
     } catch (err) {
             console.log(err);
     }
