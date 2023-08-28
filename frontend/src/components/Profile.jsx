@@ -1,9 +1,5 @@
-import React from 'react'
-import '../Profile.css'
-import Poster from './Poster.jsx'
-
-function Profile(){
-    return (
+const Profile = () => {
+    const content = (
         <>
             <h2>Username</h2>
             <div className="section--container">
@@ -13,10 +9,10 @@ function Profile(){
                 <hr></hr>
                 <div>
                     <ul className="movies--list">
+                        {/* <Poster />
                         <Poster />
                         <Poster />
-                        <Poster />
-                        <Poster />
+                        <Poster /> */}
                     </ul>
                 </div>
             </div>
@@ -28,15 +24,17 @@ function Profile(){
                 <hr></hr>
                 <div>
                     <ul className="movies--list">
+                        {/* <Poster />
                         <Poster />
                         <Poster />
-                        <Poster />
-                        <Poster />
+                        <Poster /> */}
                     </ul>
                 </div>
             </div>
         </>
     )
-}
 
+    return content
+}
 export default Profile
+

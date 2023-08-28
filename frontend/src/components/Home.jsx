@@ -1,10 +1,11 @@
-import React from 'react'
-import '../Home.css'
-import Poster from './Poster.jsx'
-import Stats from './Stats.jsx'
+import { Link } from 'react-router-dom'
 
-function Home() {
-    return (
+// This page should render when the user is not logged in. 
+// Use the Dashboard.jsx component to render the page when the user IS logged in.
+
+// Add a link to the Login page
+const Home = () => {
+    const content = (
         <>    
             <h1 className="welcome">Welcome back, (Username).</h1>
 
@@ -15,12 +16,12 @@ function Home() {
                 <hr></hr>
                 <section>
                     <ul className ="movies--list">
+                        {/* <Poster />
                         <Poster />
                         <Poster />
                         <Poster />
                         <Poster />
-                        <Poster />
-                        <Poster />
+                        <Poster /> */}
                     </ul>
                 </section>
             </div>
@@ -31,7 +32,7 @@ function Home() {
                 </div>
                 <hr></hr>
                 <section>
-                    <ul className ="movies--list">
+                    {/* <ul className ="movies--list">
                         <li>
                             <Poster />
                             <Stats />
@@ -56,11 +57,11 @@ function Home() {
                             <Poster />
                             <Stats />
                         </li>
-                    </ul>
+                    </ul> */}
                 </section>
             </div>
         </>
     )
+    return content
 }
-
 export default Home

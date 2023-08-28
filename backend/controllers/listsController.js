@@ -40,7 +40,7 @@ const updateList = asyncHandler(async (req, res) => {
         )
         return res.status(201).json({ message: "The movie was added to the user's database." })
     } catch (err) {
-            console.log(err);
+        console.log(err);
     }
 })
 
