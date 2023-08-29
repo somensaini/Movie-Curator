@@ -11,6 +11,7 @@ const connectDB = require('./config/database')
 const mongoose = require('mongoose')
 const PORT = process.env.PORT || 3500
 const bodyParser = require("body-parser")
+
 // Console log the port
 console.log(process.env.NODE_ENV)
 
@@ -36,6 +37,7 @@ app.use(express.static('public'))
 
 // This will respond to any path that starts with '/' regardless of the HTTP request and it will use the root.js router
 app.use('/', require('./routes/root'))
+app.use('/auth', require('./routes/authRoutes'))
 app.use('/user', require('./routes/userRoutes'))
 app.use('/list', require('./routes/listRoutes'))
 // app.use('/search', require('./routes/searchRoutes'))
