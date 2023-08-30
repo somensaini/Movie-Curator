@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 const Home = () => {
     const content = (
         <>    
-            <h1 className="welcome">Welcome back, (Username).</h1>
+            <h1 className="welcome">Welcome to Letterboxd.</h1>
 
             <div className = "section--container">
                 <div className = "section--title">

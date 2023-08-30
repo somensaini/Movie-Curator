@@ -10,13 +10,13 @@ const DashHeader = () => {
 
                 <ul className = "header--nav--items">
                     <Link to="/dashboard/user">
-                        <li>PROFILE</li>
+                        <li className = "header--nav--links">PROFILE</li>
                     </Link>
                     <Link to="/dashboard/list">
-                        <li>MY LIST</li>
+                        <li className = "header--nav--links">MY LIST</li>
                     </Link>
                     <Link to="/dashboard/search">
-                        <li>SEARCH</li>
+                        <li className = "header--nav--links">SEARCH</li>
                     </Link>
                 </ul>
             </nav>
