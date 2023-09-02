@@ -448,6 +448,12 @@ template {
   list-style-type: none;
 }
 
+.search--list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .posters {
   width: 125px;
   height: 200px;
