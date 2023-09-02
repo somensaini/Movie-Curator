@@ -7,9 +7,6 @@ import Dashboard from './components/Dashboard'
 import List from './components/List'
 import Profile from './components/Profile'
 import Search from './components/Search'
-// import Welcome from './features/auth/Welcome'
-// import NotesList from './features/notes/NotesList'
-// import UsersList from './features/users/UsersList'
 
 function App() {
   return (
