@@ -7,7 +7,7 @@ const Dashboard = () => {
         <>
             <DashHeader />
             <Outlet />
-                {/* This outlet should contain the Dashboard page, Profile, List, and Search page */}
+                {/* This outlet contains the Home, Profile, List, and Search page */}
             <DashFooter />
         </>
     )

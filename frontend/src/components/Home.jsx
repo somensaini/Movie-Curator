@@ -1,10 +1,6 @@
 import { useState, useEffect } from 'react';
 import Poster from "./Poster"
 
-// This page should render when the user is not logged in. 
-// Use the Dashboard.jsx component to render the page when the user IS logged in.
-
-// Add a link to the Login page
 const Home = () => {
     const [discover, setDiscover] = useState([]);
     const [popular, setPopular] = useState([]);

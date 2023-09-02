@@ -20,10 +20,8 @@ const DashHeader = () => {
                     </Link>
                 </ul>
             </nav>
-
         </header>
     )
-
     return content
 }
 export default DashHeader
