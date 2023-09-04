@@ -33,6 +33,8 @@ const Search = () => {
             <SearchPoster
                 title = {searchElement.title}
                 posterPath = {`https://image.tmdb.org/t/p/original/${searchElement.poster_path}`}
+                year = {searchElement.release_date.split('-')[0]}
+                description = {searchElement.overview}
             />
         ))
     }    
@@ -45,9 +47,8 @@ const Search = () => {
     }
 
     const content = (
-        <>
-            <h2>Search</h2>
-            <form>
+        <div className = "search--container">
+            <form className = "search--form">
                 <label>Enter in your search term</label>
                 <input type="text" id="searchTerm"/>
                 <button id="searchButton" onClick={submitSearch}>Submit</button>
@@ -58,7 +59,7 @@ const Search = () => {
                     {searchElements}
                 </ul>
             </div>
-        </>
+        </div>
         )
     return content
 }
