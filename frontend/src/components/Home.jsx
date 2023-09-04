@@ -59,32 +59,32 @@ const Home = () => {
         <>    
             <h1 className="welcome">Welcome to Letterboxd.</h1>
 
-            <div className = "section--container">
+            <div className = "section--container--home">
                 
                 <div className = "section--title">
                         <h3>NEW ON LETTERBOXD</h3>
                 </div>
 
-                <hr></hr>
+                <hr className="section--divider"></hr>
 
-                <div>
-                    <ul className = "movies--list">
+                <div className = "movies--list--container">
+                    <ul className = "movies--list--home">
                         {discoverElements}
                     </ul>
                 </div>
 
             </div>
 
-            <div className = "section--container">
+            <div className = "section--container--home">
                 
                 <div className = "section--title">
                         <h3>POPULAR ON LETTERBOXD</h3>
                 </div>
 
-                <hr></hr>
+                <hr className="section--divider"></hr>
 
-                <div>
-                    <ul className = "movies--list">
+                <div className = "movies--list--container">
+                    <ul className = "movies--list--home">
                         {popularElements}
                     </ul>
                 </div>

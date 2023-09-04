@@ -4,9 +4,8 @@ export default function Poster(props) {
     return (
         <li>
             <img 
+                className = "posters"
                 src = {props.posterPath}
-                width="100"
-                height="150"
             />
         </li>
     )

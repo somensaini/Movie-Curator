@@ -5,12 +5,12 @@ const DashFooter = () => {
     const content = (
         <footer className="footer">
             <nav className="footer--nav">
-                {/* <ul className="footer--links">
+                <ul className="footer--links">
                     <li>About</li>
                     <li>Help</li>
                     <li>Contact</li>
                     <li>GitHub</li>
-                </ul> */}
+                </ul>
             </nav>
             <p className="copyright">© Letterboxd Limited. Film data from TMDb.</p>
         </footer>
