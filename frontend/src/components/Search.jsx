@@ -41,17 +41,18 @@ const Search = () => {
 
     function submitSearch (e){
         e.preventDefault();
-        query = document.getElementById('searchTerm').value
+        query = document.getElementById('search--input').value
         setResults(query)
         setSearchState(true)
     }
 
     const content = (
         <div className = "search--container">
+
             <form className = "search--form">
-                <label>Enter in your search term</label>
-                <input type="text" id="searchTerm"/>
-                <button id="searchButton" onClick={submitSearch}>Submit</button>
+                <label>Search for a movie</label>
+                    <input type="text" id="search--input"/>
+                    <button id="search--button" onClick={submitSearch}>Submit</button>
             </form>
 
             <div>

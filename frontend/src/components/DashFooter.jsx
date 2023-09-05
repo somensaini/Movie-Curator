@@ -12,7 +12,6 @@ const DashFooter = () => {
                     <li>GitHub</li>
                 </ul>
             </nav>
-            <p className="copyright">© Letterboxd Limited. Film data from TMDb.</p>
         </footer>
     )
 
