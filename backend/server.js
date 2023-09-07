@@ -1,26 +1,46 @@
 require('dotenv').config()
 const express = require('express')
 const app = express();
+const mongoose = require('mongoose')
+const passport = require('passport')
 const path = require('path')
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 const { logger, logEvents } = require('./middleware/logger')
 const errorHandler = require('./middleware/errorHandler')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const corsOptions = require('./config/corsOptions')
 const connectDB = require('./config/database')
-const mongoose = require('mongoose')
+
 const PORT = process.env.PORT || 3500
 const bodyParser = require("body-parser")
 
 // Console log the port
 console.log(process.env.NODE_ENV)
 
+// Passport Config
+require("./config/passport")(passport);
+
 //Connect To Database
 connectDB()
 
 app.use(logger)
-
 app.use(cors(corsOptions))
+
+// Sessions
+app.use(
+    session({
+      secret: "keyboard cat",
+      resave: false,
+      saveUninitialized: false,
+      store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    })
+  );
+
+// Passport middleware
+app.use(passport.initialize())
+app.use(passport.session())
 
 // Use the JSON middleware function built into Express. It parses incoming JSON requests and puts the parsed data in req.body
 app.use(express.json())
