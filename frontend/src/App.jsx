@@ -8,9 +8,27 @@ import Dashboard from './components/Dashboard'
 import List from './components/List'
 import Profile from './components/Profile'
 import Search from './components/Search'
+import axios from "axios"
+import { useState } from "react"
 
 function App() {
+  const [data, setData] = useState();
+  const urlWithProxy = "api/v1";
+  
+  function getDataFromServer() {
+    axios
+      .get(urlWithProxy)
+      .then((res) => setData(res.data))
+      .catch((err) => {
+        console.error(err)
+      })
+  }
+
   return (
+    // <div className = "App">
+    //   <button onClick = {getDataFromServer}>Access server using proxy</button>
+    //   <p>data: {data}</p>
+    // </div>
     <Routes>
       {/* Layout Route contains an Oulet */}
       <Route path="/" element={<Layout />}>

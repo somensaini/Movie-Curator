@@ -19,6 +19,10 @@ const bodyParser = require("body-parser")
 // Console log the port
 console.log(process.env.NODE_ENV)
 
+app.get("/api/v1", (req, res) => {
+  res.send("Hello!")
+})
+
 // Passport Config
 require("./config/passport")(passport);
 
