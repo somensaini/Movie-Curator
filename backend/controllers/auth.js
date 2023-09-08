@@ -4,42 +4,42 @@ const User = require("../models/User");
 
 exports.getLogin = (req, res) => {
   if (req.user) {
-    return res.redirect("/profile");
+    return res.redirect("/dashboard");
   }
-  res.render("login", {
-    title: "Login",
+  res.render("index", {
+    title: "Index Page",
   });
 };
 
 exports.postLogin = (req, res, next) => {
   const validationErrors = [];
-  if (!validator.isEmail(req.body.email))
-    validationErrors.push({ msg: "Please enter a valid email address." });
+  if (!validator.isUser(req.body.username))
+    validationErrors.push({ msg: "Please enter a valid username." });
   if (validator.isEmpty(req.body.password))
     validationErrors.push({ msg: "Password cannot be blank." });
 
   if (validationErrors.length) {
-    req.flash("errors", validationErrors);
+    // req.flash("errors", validationErrors);
     return res.redirect("/login");
   }
-  req.body.email = validator.normalizeEmail(req.body.email, {
-    gmail_remove_dots: false,
-  });
+  // req.body.email = validator.normalizeEmail(req.body.email, {
+  //   gmail_remove_dots: false,
+  // });
 
   passport.authenticate("local", (err, user, info) => {
     if (err) {
       return next(err);
     }
     if (!user) {
-      req.flash("errors", info);
+      // req.flash("errors", info);
       return res.redirect("/login");
     }
     req.logIn(user, (err) => {
       if (err) {
         return next(err);
       }
-      req.flash("success", { msg: "Success! You are logged in." });
-      res.redirect(req.session.returnTo || "/profile");
+      // req.flash("success", { msg: "Success! You are logged in." });
+      res.redirect(req.session.returnTo || "/dashboard");
     });
   })(req, res, next);
 };
@@ -56,16 +56,16 @@ exports.logout = (req, res) => {
   });
 };
 
-exports.getSignup = (req, res) => {
+const getSignup = (req, res) => {
   if (req.user) {
-    return res.redirect("/profile");
+    return res.redirect("/dashboard");
   }
-  res.render("signup", {
+  res.render("index", {
     title: "Create Account",
   });
 };
 
-exports.postSignup = (req, res, next) => {
+const postSignup = (req, res, next) => {
   const validationErrors = [];
   if (!validator.isEmail(req.body.email))
     validationErrors.push({ msg: "Please enter a valid email address." });
@@ -77,30 +77,30 @@ exports.postSignup = (req, res, next) => {
     validationErrors.push({ msg: "Passwords do not match" });
 
   if (validationErrors.length) {
-    req.flash("errors", validationErrors);
-    return res.redirect("../signup");
+    // req.flash("errors", validationErrors);
+    return res.redirect("../register");
   }
   req.body.email = validator.normalizeEmail(req.body.email, {
     gmail_remove_dots: false,
   });
 
   const user = new User({
-    userName: req.body.userName,
+    username: req.body.username,
     email: req.body.email,
     password: req.body.password,
   });
 
   User.findOne(
-    { $or: [{ email: req.body.email }, { userName: req.body.userName }] },
+    { $or: [{ email: req.body.email }, { username: req.body.username }] },
     (err, existingUser) => {
       if (err) {
         return next(err);
       }
       if (existingUser) {
-        req.flash("errors", {
-          msg: "Account with that email address or username already exists.",
-        });
-        return res.redirect("../signup");
+        // req.flash("errors", {
+        //   msg: "Account with that email address or username already exists.",
+        // });
+        return res.redirect("../register");
       }
       user.save((err) => {
         if (err) {
@@ -110,9 +110,14 @@ exports.postSignup = (req, res, next) => {
           if (err) {
             return next(err);
           }
-          res.redirect("/profile");
+          res.redirect("/dashboard");
         });
       });
     }
   );
 };
+
+module.exports = {
+  getSignup,
+  postSignup
+}

@@ -2,23 +2,28 @@ import './Login.css'
 
 const Login = () => {
     return (
-        <body>
-            <form className='register--form'>
+        <>
+            <form className='register--form' action="/register" method="POST">
                 <h3>Join Letterboxd</h3>
 
-                <label className='login--label'for="username">Username</label>
-                <input className='login--input'type="text" placeholder="Username" id="username" />
+                <div>
+                    <label className='login--label' forhtml="username">Username</label>
+                    <input className='login--input' type="text" placeholder="Username" id="username" name="username"/>  
+                </div>
 
-                <label className='login--label' for="password">Email</label>
-                <input className='login--input'type="password" placeholder="Email" id="email" />
+                <div>
+                    <label className='login--label' forhtml="email">Email</label>
+                    <input className='login--input' type="email" placeholder="Email" id="email" name="email"/>
+                </div>
 
-                <label className='login--label' for="password">Password</label>
-                <input className='login--input'type="password" placeholder="Password" id="password" />
+                <div>
+                    <label className='login--label' forhtml="password">Password</label>
+                    <input className='login--input' type="password" placeholder="Password" id="password" name="password"/>
+                </div>
 
-                <button className='login--button'>Register</button>
-
+                <button type="submit" className='login--button'>Register</button>
             </form>
-        </body>
+        </>
     )
 }
 
