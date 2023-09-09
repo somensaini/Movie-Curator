@@ -12,16 +12,15 @@ const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const corsOptions = require('./config/corsOptions')
 const connectDB = require('./config/database')
-
 const PORT = process.env.PORT || 3500
 const bodyParser = require("body-parser")
 
 // Console log the port
 console.log(process.env.NODE_ENV)
 
-app.get("/api/v1", (req, res) => {
-  res.send("Hello!")
-})
+// app.get("/api/v1", (req, res) => {
+//   res.send("Hello!")
+// })
 
 // Passport Config
 require("./config/passport")(passport);
@@ -53,9 +52,6 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-//Use .env file in config folder
-// dotenv.config({ path: "./config/.env" })
-
 // This will send the user all static files in the public directory when they are on the root page
 app.use(express.static('public'))
 
@@ -78,12 +74,12 @@ app.all('*', (req, res) => {
   }
 })
 
-//Using EJS for views
-// app.set("view engine", "react");
+//View Engine
+app.set("view engine", "react");
 
 //Body Parsing
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.use(errorHandler)
 

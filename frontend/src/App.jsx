@@ -33,13 +33,12 @@ function App() {
       {/* Layout Route contains an Oulet */}
       <Route path="/" element={<Layout />}>
 
-        {/* This route is for when the User is not logged in */}
+        {/* Public Routes */}
         <Route path="" element={<HomeContainer />} />
-
-        {/* Login and Registration Pages */}
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
 
+        {/* Protected Routes -- START*/}
         {/* Dashboard Route contains the Header and Footer */}
         <Route path="dashboard" element={<Dashboard />}>
 
@@ -63,10 +62,7 @@ function App() {
             <Route index element={<Search />} />
           </Route>
 
-        {/* End of Dashboard Route */}
-        </Route>
-
-      {/* End of Layout Route */}
+        </Route>{/* Protected Routes -- END */}
       </Route> 
     </Routes>
   );

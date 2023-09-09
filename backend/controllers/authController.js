@@ -2,7 +2,7 @@ const passport = require("passport");
 const validator = require("validator");
 const User = require("../models/User");
 
-exports.getLogin = (req, res) => {
+const getLogin = (req, res) => {
   if (req.user) {
     return res.redirect("/dashboard");
   }
@@ -11,7 +11,7 @@ exports.getLogin = (req, res) => {
   });
 };
 
-exports.postLogin = (req, res, next) => {
+const postLogin = (req, res, next) => {
   const validationErrors = [];
   if (!validator.isUser(req.body.username))
     validationErrors.push({ msg: "Please enter a valid username." });
@@ -44,7 +44,7 @@ exports.postLogin = (req, res, next) => {
   })(req, res, next);
 };
 
-exports.logout = (req, res) => {
+const logout = (req, res) => {
   req.logout(() => {
     console.log('User has logged out.')
   })
@@ -73,8 +73,8 @@ const postSignup = (req, res, next) => {
     validationErrors.push({
       msg: "Password must be at least 8 characters long",
     });
-  if (req.body.password !== req.body.confirmPassword)
-    validationErrors.push({ msg: "Passwords do not match" });
+  // if (req.body.password !== req.body.confirmPassword)
+  //   validationErrors.push({ msg: "Passwords do not match" });
 
   if (validationErrors.length) {
     // req.flash("errors", validationErrors);
@@ -86,8 +86,8 @@ const postSignup = (req, res, next) => {
 
   const user = new User({
     username: req.body.username,
-    email: req.body.email,
     password: req.body.password,
+    email: req.body.email,
   });
 
   User.findOne(
@@ -97,6 +97,7 @@ const postSignup = (req, res, next) => {
         return next(err);
       }
       if (existingUser) {
+        console.log("Account with that email address or username already exists.")
         // req.flash("errors", {
         //   msg: "Account with that email address or username already exists.",
         // });
@@ -118,6 +119,9 @@ const postSignup = (req, res, next) => {
 };
 
 module.exports = {
+  getLogin,
+  postLogin,
+  logout,
   getSignup,
   postSignup
 }
