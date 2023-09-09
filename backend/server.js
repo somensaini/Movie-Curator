@@ -75,7 +75,7 @@ app.all('*', (req, res) => {
 })
 
 //View Engine
-app.set("view engine", "react");
+// app.set("view engine", "react");
 
 //Body Parsing
 app.use(express.urlencoded({ extended: true }));

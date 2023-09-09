@@ -16,25 +16,46 @@ const Register = () => {
         setEmail(e.target.value)
     }
 
-    const handleSubmit=(e)=> {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        const postURL = "http://localhost:3500/register"
-        fetch(postURL, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: username,
-                password: password,
-                email: email
-            })
-        })
-        .then(()=> {
-            console.log("Added")
-        })
+        try {
+            let res = await fetch("http://localhost:3500/register", {
+                method: "POST",
+                body: JSON.stringify({
+                    username: username,
+                    password: password,
+                    email: email
+                }),       
+            });
+            let resJson = await res.json()
+            if (res.status === 200){
+                setUsername('')
+                setPassword('')
+                console.log('Success')
+            }else{
+                console.log('Some error')
+            }
+        } catch (err){
+            console.log(err)
+        }
     }
+
+        // const postURL = "http://localhost:3500/register"
+        // fetch(postURL, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         username: username,
+        //         password: password,
+        //         email: email
+        //     })
+        // })
+        // .then(()=> {
+        //     console.log("Added")
+        // })
     return (
         <>
             <form onSubmit={handleSubmit} className='register--form'>
