@@ -1,13 +1,14 @@
 import './Login.css'
 import React, { useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
 
 const Register = () => {
-    const [ username, setUsername ] = useState()
-    const [ password, setPassword ] = useState()
-    const [ email, setEmail ] = useState()
+    const [ username, setUsername ] = useState('')
+    const [ password, setPassword ] = useState('')
+    const [ email, setEmail ] = useState('')
+    const navigate = useNavigate()
 
     const usernameUpdate=(e)=>{
-        console.log(e.target.value)
         setUsername(e.target.value)
     }
     const passwordUpdate=(e)=>{
@@ -30,13 +31,14 @@ const Register = () => {
                 headers:{
                     'Content-Type': 'application/json'
                 }
+            }).then(function (res) {
+                if (res.status === 201){
+                    console.log('The account was created successfully.')
+                    navigate('/dashboard')
+                }else{
+                    console.log('An error occured during registration.')
+                }
             });
-            let resJson = await res.json()
-            if (res.status === 200){
-                console.log('Success')
-            }else{
-                console.log('Some error')
-            }
         } catch (err){
             console.log(err)
         }

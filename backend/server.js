@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3500
 const bodyParser = require("body-parser")
 
 // Console log the port
-console.log(process.env.NODE_ENV)
+console.log(PORT)
 
 // app.get("/api/v1", (req, res) => {
 //   res.send("Hello!")
@@ -60,6 +60,7 @@ app.use('/', require('./routes/root'))
 app.use('/user', require('./routes/userRoutes'))
 app.use('/list', require('./routes/listRoutes'))
 app.use('/register', require('./routes/authRoutes'))
+app.use('/login', require('./routes/loginRoutes'))
 // app.use('/search', require('./routes/searchRoutes'))
 
 // For all other cases it will send the 404 page

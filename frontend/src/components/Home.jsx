@@ -5,6 +5,7 @@ const Home = () => {
     const [discover, setDiscover] = useState([]);
     const [popular, setPopular] = useState([]);
     
+    // React StrictMode will render components twice in development
     //Fetch API for Discover
     useEffect(() => {
         const options = {
@@ -18,7 +19,6 @@ const Home = () => {
         fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc', options)
             .then(response => response.json())
             .then(res => {
-                console.log(res.results)
                 setDiscover(res.results)
             })
             .catch(err => console.error(err));
@@ -37,20 +37,19 @@ const Home = () => {
         fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
             .then(response => response.json())
             .then(res => {
-                console.log(res.results)
                 setPopular(res.results)
             })
             .catch(err => console.error(err));
     }, [])
 
     const discoverElements = discover.slice(0, 6).map(movieElement => (
-        <Poster
+        <Poster key={movieElement.id}
             posterPath = {`https://image.tmdb.org/t/p/original/${movieElement.poster_path}`}
         />
     ))
 
     const popularElements = popular.slice(6, 12).map(popularElement => (
-        <Poster
+        <Poster key={popularElement.id}
             posterPath = {`https://image.tmdb.org/t/p/original/${popularElement.poster_path}`}
         />
     ))
