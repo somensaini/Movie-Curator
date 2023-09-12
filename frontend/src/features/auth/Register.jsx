@@ -1,6 +1,7 @@
 import './Login.css'
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import axios from 'axios'
 
 const Register = () => {
     const [ username, setUsername ] = useState('')
@@ -18,30 +19,41 @@ const Register = () => {
         setEmail(e.target.value)
     }
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
-        try {
-            let res = await fetch("http://localhost:3500/register", {
-                method: "POST",
-                body: JSON.stringify({
-                    "username": username,
-                    "password": password,
-                    "email": email
-                }),       
-                headers:{
-                    'Content-Type': 'application/json'
-                }
-            }).then(function (res) {
-                if (res.status === 201){
-                    console.log('The account was created successfully.')
-                    navigate('/dashboard')
-                }else{
-                    console.log('An error occured during registration.')
-                }
-            });
-        } catch (err){
-            console.log(err)
-        }
+        axios({
+            method: "POST",
+            data: {
+                username: username,
+                password: password,
+                email: email
+            },
+            withCredentials: true,
+            url: "http://localhost:3500/register",
+        }).then((res) => console.log(res))
+        // e.preventDefault()
+        // try {
+        //     let res = await fetch("http://localhost:3500/register", {
+        //         method: "POST",
+        //         body: JSON.stringify({
+        //             "username": username,
+        //             "password": password,
+        //             "email": email
+        //         }),       
+        //         headers:{
+        //             'Content-Type': 'application/json'
+        //         }
+        //     }).then((res) => {
+        //         if (res.status === 201){
+        //             console.log('The account was created successfully.')
+        //             navigate('/dashboard')
+        //         }else{
+        //             console.log('An error occured during registration.')
+        //         }
+        //     });
+        // } catch (err){
+        //     console.log(err)
+        // }
     }
 
     return (
@@ -52,37 +64,28 @@ const Register = () => {
                 <div>
                     <label className='login--label'>Username</label>
                     <input 
-                    required onChange={usernameUpdate} 
+                    onChange={usernameUpdate} 
                     className='login--input' 
-                    type="text"
-                    value={username} 
                     placeholder="Username" 
-                    id="username" 
-                    name="username"/>  
+                    />  
                 </div>
 
                 <div>
                     <label className='login--label'>Email</label>
                     <input 
-                    required onChange={emailUpdate} 
-                    value={email} 
+                    onChange={emailUpdate} 
                     className='login--input' 
-                    type="email" 
                     placeholder="Email" 
-                    id="email" 
-                    name="email" />
+                    />
                 </div>
 
                 <div>
                     <label className='login--label'>Password</label>
                     <input 
-                    required onChange={passwordUpdate} 
-                    value={password} 
+                    onChange={passwordUpdate} 
                     className='login--input' 
-                    type="password" 
                     placeholder="Password" 
-                    id="password" 
-                    name="password"/>
+                    />
                 </div>
 
                 <button type="submit" className='login--button'>Register</button>

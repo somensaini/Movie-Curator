@@ -1,9 +1,25 @@
 import { useState, useEffect } from 'react';
 import Poster from "./Poster"
+import axios from 'axios'
 
 const Home = () => {
     const [discover, setDiscover] = useState([]);
     const [popular, setPopular] = useState([]);
+    const [data, setData] = useState(null)
+
+    useEffect(() => {
+        axios({
+            method: "GET",
+            withCredentials: true,
+            url: "http://localhost:3500/dashboard"
+        }).then((res) => {
+            console.log(res.data)
+            setData(res.data)
+        }).catch((err) => {
+            console.log(err.response.data)
+        })
+    }, [])
+
     
     // React StrictMode will render components twice in development
     //Fetch API for Discover
@@ -56,7 +72,8 @@ const Home = () => {
 
     const content = (
         <>    
-            <h1 className="welcome">Welcome to Letterboxd.</h1>
+            <h1 className = "welcome">Welcome {data ? `back ${data.username}` : 'to Letterboxd'}</h1>
+            {/* <h1 className="welcome">Welcome to Letterboxd.</h1> */}
 
             <div className = "section--container--home">
                 

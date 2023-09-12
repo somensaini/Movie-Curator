@@ -1,6 +1,7 @@
 import './Login.css'
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import axios from 'axios'
 
 const Login = () => {
     const [ username, setUsername ] = useState('')
@@ -14,31 +15,47 @@ const Login = () => {
         setPassword(e.target.value)
     }
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
-        try {
-            let res = await fetch("http://localhost:3500/login", {
-                method: "POST",
-                body: JSON.stringify({
-                    "username": username,
-                    "password": password,
-                }),       
-                headers:{
-                    'Content-Type': 'application/json'
-                }
-            }).then(function (res) {
-                if (res.status === 201){
-                    console.log('Login Success')
-                    navigate('/dashboard')
-                }else{
-                    console.log(res.status)
-                    console.log('An error occured during login.')
-                }
-            });
-        } catch (err){
-            console.log(err)
-        }
+        axios({
+            method: "POST",
+            data: {
+                username: username,
+                password: password,
+            },
+            withCredentials: true,
+            url: "http://localhost:3500/login",
+        }).then((res) => {
+            if (res.status === 200){
+                navigate('/dashboard')
+            }
+        })
     }
+        
+    //     e.preventDefault()
+    //     try {
+    //         let res = await fetch("http://localhost:3500/login", {
+    //             method: "POST",
+    //             body: JSON.stringify({
+    //                 "username": username,
+    //                 "password": password,
+    //             }),       
+    //             headers:{
+    //                 'Content-Type': 'application/json'
+    //             }
+    //         }).then(function (res) {
+    //             if (res.status === 201){
+    //                 console.log('Login Success')
+    //                 navigate('/dashboard')
+    //             }else{
+    //                 console.log(res.status)
+    //                 console.log('An error occured during login.')
+    //             }
+    //         });
+    //     } catch (err){
+    //         console.log(err)
+    //     }
+    // }
 
     return (
         <>
@@ -48,25 +65,19 @@ const Login = () => {
                 <div>
                     <label className='login--label'>Username</label>
                     <input
-                        required onChange={usernameUpdate}
+                        onChange={usernameUpdate}
                         className='login--input'
-                        type="text" 
-                        value={username} 
                         placeholder="Username" 
-                        id="username" 
-                        name="username"/>
+                        />
                 </div>
 
                 <div>
                 <label className='login--label'>Password</label>
                     <input
-                        required onChange={passwordUpdate}
+                        onChange={passwordUpdate}
                         className='login--input'
-                        type="text" 
-                        value={password} 
                         placeholder="Password" 
-                        id="password" 
-                        name="password"/>
+                        />
                 </div>
 
                 <button className='login--button'>Log In</button>

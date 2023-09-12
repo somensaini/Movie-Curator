@@ -1,4 +1,3 @@
-require('dotenv').config()
 const express = require('express')
 const app = express();
 const mongoose = require('mongoose')
@@ -13,53 +12,50 @@ const cors = require('cors')
 const corsOptions = require('./config/corsOptions')
 const connectDB = require('./config/database')
 const PORT = process.env.PORT || 3500
-const bodyParser = require("body-parser")
-
-// Console log the port
-console.log(PORT)
-
-// app.get("/api/v1", (req, res) => {
-//   res.send("Hello!")
-// })
-
-// Passport Config
+require('dotenv').config()
 require("./config/passport")(passport);
+
+
+// Use the JSON middleware function built into Express. It parses incoming JSON requests and puts the parsed data in req.body
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 
 //Connect To Database
 connectDB()
 
+// Error Handler and Logger
+app.use(errorHandler)
 app.use(logger)
+
+// CORS
 app.use(cors(corsOptions))
 
-// Sessions
+// Express Sessions
 app.use(
-    session({
-      secret: "keyboard cat",
-      resave: false,
-      saveUninitialized: false,
-      store: new MongoStore({ mongooseConnection: mongoose.connection }),
-    })
-  );
+  session({
+    secret: "keyboard cat",
+    resave: true,
+    saveUninitialized: false,
+    // store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  })
+);
+
+// Cookie Parser
+app.use(cookieParser("keyboard cat"))
 
 // Passport middleware
 app.use(passport.initialize())
 app.use(passport.session())
 
-// Use the JSON middleware function built into Express. It parses incoming JSON requests and puts the parsed data in req.body
-app.use(express.json())
-
-// Parse cookies
-app.use(cookieParser())
-app.use(bodyParser.urlencoded({ extended: true }))
-
 // This will send the user all static files in the public directory when they are on the root page
 app.use(express.static('public'))
 
-// This will respond to any path that starts with '/' regardless of the HTTP request and it will use the root.js router
+// Routes
 app.use('/', require('./routes/root'))
+app.use('/dashboard', require('./routes/dashboardRoutes'))
 app.use('/user', require('./routes/userRoutes'))
 app.use('/list', require('./routes/listRoutes'))
-app.use('/register', require('./routes/authRoutes'))
+app.use('/register', require('./routes/registerRoutes'))
 app.use('/login', require('./routes/loginRoutes'))
 // app.use('/search', require('./routes/searchRoutes'))
 
@@ -74,15 +70,6 @@ app.all('*', (req, res) => {
       res.type('txt').send('404 Not Found')
   }
 })
-
-//View Engine
-// app.set("view engine", "react");
-
-//Body Parsing
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-app.use(errorHandler)
 
 // Console log when connected and if any errors occur
 // The event will only be called once
