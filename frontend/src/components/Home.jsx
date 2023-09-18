@@ -72,8 +72,7 @@ const Home = () => {
 
     const content = (
         <>    
-            <h1 className = "welcome">Welcome {data ? `back ${data.username}` : 'to Letterboxd'}</h1>
-            {/* <h1 className="welcome">Welcome to Letterboxd.</h1> */}
+            <h1 className = "welcome">Welcome {data ? `back ${data.username[0].toUpperCase() + data.username.slice(1)}` : 'to Letterboxd'}</h1>
 
             <div className = "section--container--home">
                 

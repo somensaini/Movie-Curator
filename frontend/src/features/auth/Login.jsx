@@ -31,31 +31,6 @@ const Login = () => {
             }
         })
     }
-        
-    //     e.preventDefault()
-    //     try {
-    //         let res = await fetch("http://localhost:3500/login", {
-    //             method: "POST",
-    //             body: JSON.stringify({
-    //                 "username": username,
-    //                 "password": password,
-    //             }),       
-    //             headers:{
-    //                 'Content-Type': 'application/json'
-    //             }
-    //         }).then(function (res) {
-    //             if (res.status === 201){
-    //                 console.log('Login Success')
-    //                 navigate('/dashboard')
-    //             }else{
-    //                 console.log(res.status)
-    //                 console.log('An error occured during login.')
-    //             }
-    //         });
-    //     } catch (err){
-    //         console.log(err)
-    //     }
-    // }
 
     return (
         <>

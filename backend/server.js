@@ -57,6 +57,7 @@ app.use('/user', require('./routes/userRoutes'))
 app.use('/list', require('./routes/listRoutes'))
 app.use('/register', require('./routes/registerRoutes'))
 app.use('/login', require('./routes/loginRoutes'))
+app.use('/logout', require('./routes/logoutRoutes'))
 // app.use('/search', require('./routes/searchRoutes'))
 
 // For all other cases it will send the 404 page

@@ -30,30 +30,11 @@ const Register = () => {
             },
             withCredentials: true,
             url: "http://localhost:3500/register",
-        }).then((res) => console.log(res))
-        // e.preventDefault()
-        // try {
-        //     let res = await fetch("http://localhost:3500/register", {
-        //         method: "POST",
-        //         body: JSON.stringify({
-        //             "username": username,
-        //             "password": password,
-        //             "email": email
-        //         }),       
-        //         headers:{
-        //             'Content-Type': 'application/json'
-        //         }
-        //     }).then((res) => {
-        //         if (res.status === 201){
-        //             console.log('The account was created successfully.')
-        //             navigate('/dashboard')
-        //         }else{
-        //             console.log('An error occured during registration.')
-        //         }
-        //     });
-        // } catch (err){
-        //     console.log(err)
-        // }
+        }).then((res) => {
+            if (res.status === 200){
+                navigate('/login')
+            }
+        })
     }
 
     return (
@@ -76,6 +57,7 @@ const Register = () => {
                     onChange={emailUpdate} 
                     className='login--input' 
                     placeholder="Email" 
+                    type="email"
                     />
                 </div>
 
@@ -84,7 +66,8 @@ const Register = () => {
                     <input 
                     onChange={passwordUpdate} 
                     className='login--input' 
-                    placeholder="Password" 
+                    placeholder="Password"
+                    type="password"
                     />
                 </div>
 
