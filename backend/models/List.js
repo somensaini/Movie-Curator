@@ -2,7 +2,10 @@ const mongoose = require('mongoose')
 
 //Store the userID and an array of objects (movieID: idnumber, isFavorite: true/false)
 const listSchema = new mongoose.Schema({
-    user: {
+    username: {
+        type: String
+    },
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },

@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const List = require("../models/List")
 const bcrypt = require("bcrypt");
 
 // const postSignup = (req, res, next) => {
@@ -51,9 +52,16 @@ const postSignup = (req, res) => {
         username: req.body.username,
         password: hashedPassword,
         email: req.body.email
-      });
-      await newUser.save();
-      res.send("User Created");
+      })
+      await newUser.save()
+
+      const newList = new List({
+        username: newUser.username,
+        userId: newUser._id
+      })
+      await newList.save()
+
+      res.send("User Created")
     }
   });
 };
