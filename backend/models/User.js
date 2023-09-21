@@ -1,24 +1,16 @@
 const mongoose = require('mongoose')
 
+// Schema for storing a User's information
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
-        // unique: true,
-        // required: true
     },
     password: {
         type: String,
-        // required: true
     },
     email: {
         type: String,
-        // unique: true,
-        // required: true
-    },
-    favorites: [{
-        type: String,
-        default: ""
-    }]  
+    }
 })
 
 module.exports = mongoose.model('User', userSchema)

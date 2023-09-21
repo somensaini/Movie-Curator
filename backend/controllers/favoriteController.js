@@ -1,7 +1,8 @@
 const List = require('../models/List')
 const asyncHandler = require('express-async-handler')
 
-// Set an entry's isFavorite value to true
+// PATCH
+// Change the 'isFavorite' property of a movie that is already in the User's list.
 const updateList = asyncHandler(async (req, res) => {
     const { username, movieId } = req.body
     try {

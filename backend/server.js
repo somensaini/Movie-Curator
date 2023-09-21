@@ -36,7 +36,6 @@ app.use(
     secret: "keyboard cat",
     resave: true,
     saveUninitialized: false,
-    // store: new MongoStore({ mongooseConnection: mongoose.connection }),
   })
 );
 
@@ -59,7 +58,6 @@ app.use('/favorite', require('./routes/favoriteRoutes'))
 app.use('/register', require('./routes/registerRoutes'))
 app.use('/login', require('./routes/loginRoutes'))
 app.use('/logout', require('./routes/logoutRoutes'))
-// app.use('/search', require('./routes/searchRoutes'))
 
 // For all other cases it will send the 404 page
 app.all('*', (req, res) => {

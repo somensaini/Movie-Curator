@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-//Store the userID and an array of objects (movieID: idnumber, isFavorite: true/false)
+//Schema for storing a User's List Data (movieId + isFavorite)
 const listSchema = new mongoose.Schema({
     username: {
         type: String
