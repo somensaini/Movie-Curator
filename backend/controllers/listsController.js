@@ -3,7 +3,7 @@ const List = require('../models/List')
 const asyncHandler = require('express-async-handler')
 
 //Get a user's list of movies
-const getOneList = asyncHandler(async (req, res) => {
+const requestList = asyncHandler(async (req, res) => {
     const userList = await List.findOne({ username: req.body.username }).lean()
     
     if (userList) {
@@ -46,7 +46,7 @@ const deleteList = asyncHandler(async (req, res) => {
 })
 
 module.exports = {
-    getOneList,
+    requestList,
     updateList,
     deleteList
 }
