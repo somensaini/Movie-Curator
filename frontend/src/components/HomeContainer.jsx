@@ -5,6 +5,7 @@ import Home from './Home'
 const HomeContainer = () => {
     return (
         <>
+            {/* Render the Header and Body for the Home page when the User is not logged in */}
             <HomeHeader />
             <Home />
             <DashFooter />

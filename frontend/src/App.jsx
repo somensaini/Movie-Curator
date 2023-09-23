@@ -12,10 +12,12 @@ import Search from './components/Search'
 function App() {
   return (
     <Routes>
-      {/* Layout Route contains an Oulet */}
+
+      {/* Layout Route contains an Outlet that is the main component*/}
       <Route path="/" element={<Layout />}>
 
         {/* Public Routes */}
+        {/* Homepage when not logged in, login page, and registration page. */}
         <Route path="" element={<HomeContainer />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />

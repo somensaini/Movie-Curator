@@ -9,11 +9,10 @@ const Profile = () => {
     const [favoritesPosters, setFavoritesPosters] = useState([])
     const [recentPosters, setRecentPosters] = useState([])
     
-    
     let favorites = []
     let recents = []
 
-    // Get the username. 
+    // Get the username
     useEffect(() => {
         axios({
             method: "GET",
@@ -27,7 +26,7 @@ const Profile = () => {
         })
     }, [])
 
-    // Get the user's list and filter the favorites === true.
+    // Get the User's list and filter the list to include only favorites
     useEffect(() => {
         let data = JSON.stringify({
             "username": username
@@ -48,15 +47,15 @@ const Profile = () => {
             : console.log('empty')
 
             Array.isArray(res.data)
-            ? setUserRecentData(res.data.map(x => x.movieId).reverse())
+            ? setUserRecentData(res.data.map(x => x.movieId).reverse())     //Reverse the data to show latest entries first
             : console.log('recent empty')
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err)
         })
     }, [username])
     
-    // Display the first 5 favorites on the page.
+    // Display the first 5 favorites on the page
     useEffect(() => {
         if (userListData !== null){
             setFavoritesPosters([])
@@ -98,12 +97,13 @@ const Profile = () => {
                     setRecentPosters(prevData => [...prevData, res.data.posters[0].file_path])
                   })
                   .catch((err) => {
-                    console.log(err);
+                    console.log(err)
                   })
             }
         }
     }, [userRecentData])
 
+    // Generate the Poster components for the favorites
     if (favoritesPosters.length !== 0){
         favorites = favoritesPosters.map(link => (
             <Poster 
@@ -112,6 +112,7 @@ const Profile = () => {
         ))
     }
 
+    // Generate the Poster components for the recents
     if (recentPosters.length !== 0){
         recents = recentPosters.map(link => (
             <Poster 

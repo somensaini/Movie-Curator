@@ -1,18 +1,15 @@
 import React from 'react' 
-import { useState, useEffect } from 'react';
 import axios from 'axios'
 
-
 export default function SearchPoster(props) {
-
     const test = props.id
 
+    // Function to run when User clicks Add to List
     function submitList() {
         let data = JSON.stringify({
             "username": props.username,
             "movieId": props.id
         });
-
         let config = {
             method: 'patch',
             maxBodyLength: Infinity,
@@ -21,24 +18,23 @@ export default function SearchPoster(props) {
                 'Content-Type': 'application/json'
         },
             data : data
-        };
+        }
 
         axios.request(config)
-        .then((response) => {
-            console.log('success')
+        .then((res) => {
+            console.log("Added to User's List")
         })
         .catch((error) => {
-        console.log(error);
-        });
-
+        console.log(error)
+        })
     }
 
+    // Function to run when User clicks Add to Favorites
     function submitFavorite() {
         let data = JSON.stringify({
             "username": props.username,
             "movieId": props.id
-        });
-
+        })
         let config = {
             method: 'patch',
             maxBodyLength: Infinity,
@@ -47,18 +43,16 @@ export default function SearchPoster(props) {
                 'Content-Type': 'application/json'
         },
             data : data
-        };
-
+        }
         axios.request(config)
-        .then((response) => {
-            console.log('success')
+        .then((res) => {
+            console.log("Added to User's Favorites")
         })
         .catch((error) => {
         console.log(error);
-        });
-        
-        
+        })
     }
+    
     return (
         <li className = 'search--item'>
             <img 

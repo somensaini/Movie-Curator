@@ -9,7 +9,7 @@ const List = () => {
     
     let posters = []
 
-    // Get the username
+    // Get the username and store it in username
     useEffect(() => {
         axios({
             method: "GET",
@@ -23,7 +23,7 @@ const List = () => {
         })
     }, [])
 
-    // Get the list data (movieIDs)
+    // Get the User's list data (movieIDs) and store it in listData
     useEffect(() => {
         let data = JSON.stringify({
             "username": username
@@ -40,14 +40,14 @@ const List = () => {
         axios.request(config)
         .then((res) => {
           setListData(res.data.map(data => data.movieId))
-          //TypeError: res.data.map is not a function - running before res.data is received?
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err)
         });
     }, [username])
 
-    // Get the poster image links from TMDB using IDs and create an array of Poster components
+    // Get the image links for each poster from TMDB using their IDs.
+    // Set the Data variable equal to the previous values and the image links generated in the for loop.
     useEffect(() => {
         if (listData !== null){
             setData([])
@@ -64,15 +64,15 @@ const List = () => {
                   axios.request(config)
                   .then((res) => {
                     setData(prevData => [...prevData, res.data.posters[0].file_path])
-                    console.log(data)
                   })
                   .catch((err) => {
-                    console.log(err);
+                    console.log(err)
                   })
             }
         }
     }, [listData])
 
+    // If Data is not empty, create the Poster components for each movie and store it in posters
     if (data.length !== 0){
         posters = data.map(link => (
             <Poster 

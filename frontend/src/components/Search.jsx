@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
-import SearchPoster from './SearchPoster';
+import { useState, useEffect } from 'react'
+import SearchPoster from './SearchPoster'
 import axios from 'axios'
-
 
 const Search = () => {
     const [results, setResults] = useState(null)
@@ -11,7 +10,7 @@ const Search = () => {
 
     let query, searchElements
 
-    //getting the username of user
+    //Get the username
     useEffect(() => {
         axios({
             method: "GET",
@@ -24,7 +23,7 @@ const Search = () => {
         })
         }, [])
     
-    //getting movie data
+    //Get the movie data from the TMDB API and store it in data
     useEffect(() => {
         if (results !== null){
             const options = {
@@ -38,13 +37,13 @@ const Search = () => {
               fetch(`https://api.themoviedb.org/3/search/movie?query=${results}&include_adult=false&language=en-US&page=1`, options)
                 .then(response => response.json())
                 .then(res => {
-                    console.log(res.results)
                     setData(res.results)
                 })
-                .catch(err => console.error(err));
+                .catch(err => console.error(err))
         }
     }, [results])
     
+    // If a search has been completed and the results are not empty, generate a SearchPoster component for each movie
     if (searchState === true && data != ''){
         searchElements = data.slice(0, 10).map(searchElement => (
             <SearchPoster
@@ -58,8 +57,9 @@ const Search = () => {
         ))
     }
     
+    // Function to run when the search is submitted
     function submitSearch (e){
-        e.preventDefault();
+        e.preventDefault()
         query = document.getElementById('search--input').value
         setResults(query)
         setSearchState(true)

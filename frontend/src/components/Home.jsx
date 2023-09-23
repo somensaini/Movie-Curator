@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 import Poster from "./Poster"
 import axios from 'axios'
 
 const Home = () => {
-    const [discover, setDiscover] = useState([]);
-    const [popular, setPopular] = useState([]);
+    const [discover, setDiscover] = useState([])
+    const [popular, setPopular] = useState([])
     const [data, setData] = useState(null)
 
+    // Get the User's username and store it in data
     useEffect(() => {
         axios({
             method: "GET",
@@ -20,8 +21,6 @@ const Home = () => {
         })
     }, [])
 
-    
-    // React StrictMode will render components twice in development
     //Fetch API for Discover
     useEffect(() => {
         const options = {
@@ -30,14 +29,13 @@ const Home = () => {
             accept: 'application/json',
             Authorization: import.meta.env.VITE_LETTERBOXD_TOKEN
             }
-        };
-        
+        }
         fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc', options)
             .then(response => response.json())
             .then(res => {
                 setDiscover(res.results)
             })
-            .catch(err => console.error(err));
+            .catch(err => console.error(err))
     }, [])
 
     //Fetch API for Popular
@@ -48,22 +46,23 @@ const Home = () => {
             accept: 'application/json',
             Authorization: import.meta.env.VITE_LETTERBOXD_TOKEN
             }
-        };
-        
+        }
         fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
             .then(response => response.json())
             .then(res => {
                 setPopular(res.results)
             })
-            .catch(err => console.error(err));
+            .catch(err => console.error(err))
     }, [])
 
+    // Create 6 Poster components for the New on Letterboxd section
     const discoverElements = discover.slice(0, 6).map(movieElement => (
         <Poster key={movieElement.id}
             posterPath = {`https://image.tmdb.org/t/p/original/${movieElement.poster_path}`}
         />
     ))
 
+    // Create 6 Poster components for the Popular on Letterboxd section
     const popularElements = popular.slice(6, 12).map(popularElement => (
         <Poster key={popularElement.id}
             posterPath = {`https://image.tmdb.org/t/p/original/${popularElement.poster_path}`}
