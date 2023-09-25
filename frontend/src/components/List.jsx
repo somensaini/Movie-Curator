@@ -6,8 +6,9 @@ const List = () => {
     {/*Using those movie IDs, get the poster images using the API for TMDB.*/}
     const [listData, setListData] = useState(null)
     const [username, setUserName] = useState(null)
-    let listPosters = []
-    let posters
+    const [data, setData] = useState([])
+    
+    let posters = []
 
     // Get the username
     useEffect(() => {
@@ -16,8 +17,8 @@ const List = () => {
             withCredentials: true,
             url: "http://localhost:3500/dashboard"
         }).then((res) => {
-            // console.log(res.data.username)
             setUserName(res.data.username)
+            console.log(username)
         }).catch((err) => {
             console.log(err)
         })
@@ -39,17 +40,18 @@ const List = () => {
         };
         axios.request(config)
         .then((res) => {
-        //   console.log(res.data.map(data => data.movieId))
           setListData(res.data.map(data => data.movieId))
+          //TypeError: res.data.map is not a function - running before res.data is received?
         })
-        .catch((error) => {
-          console.log(error);
+        .catch((err) => {
+          console.log(err);
         });
     }, [username])
 
     // Get the poster image links from TMDB using IDs and create an array of Poster components
     useEffect(() => {
         if (listData !== null){
+            setData([])
             for (let i = 0; i < listData.length; i++){
                 let config = {
                     method: 'get',
@@ -58,29 +60,28 @@ const List = () => {
                     headers: { 
                       'Authorization': import.meta.env.VITE_LETTERBOXD_TOKEN
                     },
-                  };
+                  }
+
                   axios.request(config)
                   .then((res) => {
-                    console.log(res.data.posters[0].file_path)
-                    listPosters.push(res.data.posters[0].file_path)
-                    console.log(listPosters)
-                    // there is something wrong with accessing the array
-                    // maybe something wrong in setting listData because it is logging the wrong array first
-                    // good luck
+                    setData(prevData => [...prevData, res.data.posters[0].file_path])
+                    console.log(data)
                   })
                   .catch((err) => {
                     console.log(err);
-                  });
+                  })
             }
-            console.log('test')
-            // posters = listPosters[0]
-            // // <Poster 
-            // //             posterPath = {`https://image.tmdb.org/t/p/original/${listPosters[0]}`}
-            // //           />
-            // console.log(posters) 
-            // console.log([1, 2, 3])
         }
     }, [listData])
+
+    if (data.length !== 0){
+        posters = data.map(link => (
+            <Poster 
+                posterPath = {`https://image.tmdb.org/t/p/original/${link}`}
+            />
+        ))
+        console.log(posters)
+    }
 
     const content = (
         <>
@@ -92,11 +93,6 @@ const List = () => {
                 <div className="movies--list--container">
                     <ul className="movies--list">
                         {posters}
-                        {/* <Poster />
-                        <Poster />
-                        <Poster />
-                        <Poster />
-                        <Poster /> */}
                     </ul>
                 </div>
             </div>

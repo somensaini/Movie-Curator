@@ -52,6 +52,7 @@ const Login = () => {
                         onChange={passwordUpdate}
                         className='login--input'
                         placeholder="Password" 
+                        type='password'
                         />
                 </div>
 
