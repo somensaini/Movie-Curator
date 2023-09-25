@@ -3,9 +3,8 @@ import axios from 'axios'
 import Poster from "./Poster"
 
 const List = () => {
-    {/*Using those movie IDs, get the poster images using the API for TMDB.*/}
-    const [listData, setListData] = useState(null)
     const [username, setUserName] = useState(null)
+    const [listData, setListData] = useState(null)
     const [data, setData] = useState([])
     
     let posters = []
