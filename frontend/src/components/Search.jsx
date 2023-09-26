@@ -1,13 +1,32 @@
 import { useState, useEffect } from 'react';
 import SearchPoster from './SearchPoster';
+import axios from 'axios'
+
 
 const Search = () => {
     const [results, setResults] = useState(null)
     const [data, setData] = useState('')
     const [searchState, setSearchState] = useState(false)
+    const [username, setUsername] = useState(null)
+
 
     let query, searchElements
 
+    //getting the username of user
+    useEffect(() => {
+        axios({
+            method: "GET",
+            withCredentials: true,
+            url: "http://localhost:3500/dashboard"
+        }).then((res) => {
+            setUsername(res.data.username)
+            console.log(username)
+        }).catch((err) => {
+            console.log(err)
+        })
+        }, [])
+    
+    //getting movie data
     useEffect(() => {
         if (results !== null){
             const options = {
@@ -35,10 +54,11 @@ const Search = () => {
                 posterPath = {`https://image.tmdb.org/t/p/original/${searchElement.poster_path}`}
                 year = {searchElement.release_date.split('-')[0]}
                 description = {searchElement.overview}
+                id = {searchElement.id}
             />
         ))
-    }    
-
+    }
+    
     function submitSearch (e){
         e.preventDefault();
         query = document.getElementById('search--input').value
