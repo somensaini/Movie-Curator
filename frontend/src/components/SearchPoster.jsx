@@ -2,16 +2,61 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import axios from 'axios'
 
-function submitFavorite() {
-    console.log("test")
-}
 
 export default function SearchPoster(props) {
 
     const test = props.id
 
     function submitList() {
-        //get the user data 
+        let data = JSON.stringify({
+            "username": props.username,
+            "movieId": props.id
+        });
+
+        let config = {
+            method: 'patch',
+            maxBodyLength: Infinity,
+            url: 'http://localhost:3500/list',
+            headers: { 
+                'Content-Type': 'application/json'
+        },
+            data : data
+        };
+
+        axios.request(config)
+        .then((response) => {
+            console.log('success')
+        })
+        .catch((error) => {
+        console.log(error);
+        });
+
+    }
+
+    function submitFavorite() {
+        let data = JSON.stringify({
+            "username": props.username,
+            "movieId": props.id
+        });
+
+        let config = {
+            method: 'patch',
+            maxBodyLength: Infinity,
+            url: 'http://localhost:3500/favorite',
+            headers: { 
+                'Content-Type': 'application/json'
+        },
+            data : data
+        };
+
+        axios.request(config)
+        .then((response) => {
+            console.log('success')
+        })
+        .catch((error) => {
+        console.log(error);
+        });
+        
         
     }
     return (

@@ -9,7 +9,6 @@ const Search = () => {
     const [searchState, setSearchState] = useState(false)
     const [username, setUsername] = useState(null)
 
-
     let query, searchElements
 
     //getting the username of user
@@ -20,7 +19,6 @@ const Search = () => {
             url: "http://localhost:3500/dashboard"
         }).then((res) => {
             setUsername(res.data.username)
-            console.log(username)
         }).catch((err) => {
             console.log(err)
         })
@@ -55,6 +53,7 @@ const Search = () => {
                 year = {searchElement.release_date.split('-')[0]}
                 description = {searchElement.overview}
                 id = {searchElement.id}
+                username = {username}
             />
         ))
     }
