@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const listsController = require('../controllers/favoriteController')
+const favoriteController = require('../controllers/favoriteController')
 
 router.route('/')
-    .patch(listsController.updateList)
+    .patch(favoriteController.updateList)
 
 module.exports = router
