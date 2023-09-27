@@ -17,11 +17,15 @@ const requestList = asyncHandler(async (req, res) => {
 const updateList = asyncHandler(async (req, res) => {
     const { username, movieId } = req.body
     try {
-        await List.updateOne(
-            {username: username},
-            {$push: {movieList: {movieId: movieId}}}
-        )
-        return res.status(201).json({ message: "The movie was added to the user's database." })
+        const listLengthCheck = await List.find({'movieList.movieId': movieId})
+        
+        if (listLengthCheck.length == 0){
+            await List.updateOne(
+                {username: username},
+                {$push: {movieList: {movieId: movieId}}}
+            )
+            return res.status(201).json({ message: "The movie was added to the user's database." })
+        }
     } catch (err) {
         console.log(err);
     }
