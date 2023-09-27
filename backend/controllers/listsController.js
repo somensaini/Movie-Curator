@@ -17,8 +17,8 @@ const requestList = asyncHandler(async (req, res) => {
 const updateList = asyncHandler(async (req, res) => {
     const { username, movieId } = req.body
     try {
-        const listLengthCheck = await List.find({'movieList.movieId': movieId})
-        
+        const listLengthCheck = await List.find({'username': username, 'movieList.movieId': movieId})
+
         if (listLengthCheck.length == 0){
             await List.updateOne(
                 {username: username},
