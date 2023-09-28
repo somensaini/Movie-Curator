@@ -90,7 +90,7 @@ const List = () => {
                 </div>
                 <hr className="section--divider"></hr>
                 <div className="movies--list--container">
-                    <ul className="movies--list">
+                    <ul className= "movies--list profile--list">
                         {posters}
                     </ul>
                 </div>

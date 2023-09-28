@@ -457,11 +457,16 @@ template {
 }
 
 .movies--list, .movies--list--home{
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(6, auto);
   width: 100%;
   padding: 0px;
   justify-content: left;
   list-style-type: none;
+}
+
+.profile--list{
+  grid-template-columns: repeat(5, auto);
 }
 
 .movies--list > li {
