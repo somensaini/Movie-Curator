@@ -59,7 +59,7 @@ const Profile = () => {
     useEffect(() => {
         if (userListData !== null){
             setFavoritesPosters([])
-            for (let i = 0; i < 5; i++){
+            for (let i = 0; i < userListData.length; i++){
                 let config = {
                     method: 'get',
                     maxBodyLength: Infinity,
@@ -129,7 +129,7 @@ const Profile = () => {
                 </div>
                 <hr className="section--divider"></hr>
                 <div className="movies--list--container">
-                    <ul className="movies--list">
+                    <ul className="movies--list profile--list">
                         {favorites}
                     </ul>
                 </div>
