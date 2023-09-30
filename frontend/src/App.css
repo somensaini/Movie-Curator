@@ -511,6 +511,12 @@ template {
   height: 225px;
 }
 
+.search--button {
+  border-radius: 2px;
+  background-color: #97a8b9;
+  margin: 2px;
+}
+
 .posters {
   width: 150px;
   height: 225px;

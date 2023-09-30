@@ -6,6 +6,7 @@ export default function SearchPoster(props) {
 
     // Function to run when User clicks Add to List
     function submitList() {
+        
         let data = JSON.stringify({
             "username": props.username,
             "movieId": props.id
@@ -69,8 +70,8 @@ export default function SearchPoster(props) {
                 {props.description}
             </p>
             <section>
-                <button onClick={submitList}>Add to list</button>
-                <button onClick={submitFavorite}>Add to favorites</button>
+                <button className='fa-solid fa-plus search--button' onClick={submitList}></button>
+                <button className='fa-regular fa-star search--button' onClick={submitFavorite}></button>
             </section>
         </li>
     )
