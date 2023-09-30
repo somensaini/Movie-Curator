@@ -496,13 +496,13 @@ template {
   grid-column: 1 / span 2;
 }
 
-
 .search--list {
-
+  padding: 0 10% ;
 }
 
 .search--item {
   list-style-type: none;
+  padding-bottom: 2%;
 }
 
 .search--item--image {

@@ -68,9 +68,6 @@ export default function SearchPoster(props) {
             <p>
                 {props.description}
             </p>
-            <p>
-                {props.id}
-            </p>
             <section>
                 <button onClick={submitList}>Add to list</button>
                 <button onClick={submitFavorite}>Add to favorites</button>
