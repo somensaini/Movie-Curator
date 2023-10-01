@@ -22,12 +22,6 @@ export default function SearchPoster(props) {
         }
 
         axios.request(config)
-        .then((res) => {
-            console.log("Added to User's List")
-        })
-        .catch((error) => {
-        console.log(error)
-        })
     }
 
     // Function to run when User clicks Add to Favorites
@@ -46,12 +40,6 @@ export default function SearchPoster(props) {
             data : data
         }
         axios.request(config)
-        .then((res) => {
-            console.log("Added to User's Favorites")
-        })
-        .catch((error) => {
-        console.log(error);
-        })
     }
     
     return (

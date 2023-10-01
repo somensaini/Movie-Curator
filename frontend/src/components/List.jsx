@@ -17,7 +17,6 @@ const List = () => {
             url: "http://localhost:3500/dashboard"
         }).then((res) => {
             setUserName(res.data.username)
-            console.log(username)
         }).catch((err) => {
             console.log(err)
         })
@@ -79,7 +78,6 @@ const List = () => {
                 posterPath = {`https://image.tmdb.org/t/p/original/${link}`}
             />
         ))
-        console.log(posters)
     }
 
     const content = (

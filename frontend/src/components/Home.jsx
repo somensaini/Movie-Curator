@@ -14,7 +14,6 @@ const Home = () => {
             withCredentials: true,
             url: "http://localhost:3500/dashboard"
         }).then((res) => {
-            console.log(res.data)
             setData(res.data)
         }).catch((err) => {
             console.log(err.response.data)

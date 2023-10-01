@@ -20,7 +20,6 @@ const Profile = () => {
             url: "http://localhost:3500/dashboard"
         }).then((res) => {
             setUserName(res.data.username)
-            console.log(username)
         }).catch((err) => {
             console.log(err)
         })
@@ -42,13 +41,15 @@ const Profile = () => {
         }
         axios.request(config)
         .then((res) => {
-            Array.isArray(res.data)
-            ? setUserListData(res.data.filter(x => x.isFavorite === true).map(x => x.movieId))   //Filter the data to only include favorites
-            : console.log('empty')
-
-            Array.isArray(res.data)
-            ? setUserRecentData(res.data.map(x => x.movieId).reverse())     //Reverse the data to show latest entries first
-            : console.log('recent empty')
+            //Filter the data to only include favorites
+            if (Array.isArray(res.data)){
+                setUserListData(res.data.filter(x => x.isFavorite === true).map(x => x.movieId))
+            }
+            
+            //Reverse the data to show latest entries first
+            if (Array.isArray(res.data)){
+                setUserRecentData(res.data.map(x => x.movieId).reverse())
+            }            
         })
         .catch((err) => {
           console.log(err)
