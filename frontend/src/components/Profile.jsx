@@ -108,6 +108,7 @@ const Profile = () => {
     if (favoritesPosters.length !== 0){
         favorites = favoritesPosters.map(link => (
             <Poster 
+                key={link.id}
                 posterPath = {`https://image.tmdb.org/t/p/original/${link}`}
             />
         ))
@@ -116,7 +117,7 @@ const Profile = () => {
     // Generate the Poster components for the recents
     if (recentPosters.length !== 0){
         recents = recentPosters.map(link => (
-            <Poster 
+            <Poster key={link.id}
                 posterPath = {`https://image.tmdb.org/t/p/original/${link}`}
             />
         ))

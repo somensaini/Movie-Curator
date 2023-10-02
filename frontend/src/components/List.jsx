@@ -75,6 +75,7 @@ const List = () => {
     if (data.length !== 0){
         posters = data.map(link => (
             <Poster 
+                key={link.id}
                 posterPath = {`https://image.tmdb.org/t/p/original/${link}`}
             />
         ))
