@@ -27,25 +27,15 @@ app.use(errorHandler)
 app.use(logger)
 
 // CORS
-app.use(( req, res, next) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://movie-curator.onrender.com"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers" 
-  );
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  res.setHeader("Access-Control-Allow-Private-Network", true);
-  res.setHeader("Access-Control-Max-Age", 7200);
-
-  next();
-});
+const cors = require('cors');
+const corsOpts = {
+    origin: 'https://movie-curator.onrender.com',
+    credentials: true,
+    methods: ['GET','POST','HEAD','PUT','PATCH','DELETE'],
+    allowedHeaders: ['Content-Type', 'Access-Control-Allow-Origin'],
+    exposedHeaders: ['Content-Type']
+};
+app.use(cors(corsOpts));
 
 // Express Sessions
 app.use(
