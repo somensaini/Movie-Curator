@@ -27,11 +27,7 @@ app.use(errorHandler)
 app.use(logger)
 
 // CORS
-app.use(cors({
-  origin: "https://movie-curator.onrender.com",
-  headers: ["Content-Type"],
-  credentials: true,
-}))
+app.use(cors())
 
 // Express Sessions
 app.use(
