@@ -27,7 +27,6 @@ app.use(errorHandler)
 app.use(logger)
 
 // CORS
-
 app.use(cors(corsOptions));
 
 // Express Sessions

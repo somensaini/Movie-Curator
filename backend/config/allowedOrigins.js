@@ -2,6 +2,8 @@ const allowedOrigins = [
     "https://movie-curator.onrender.com",
     "https://movie-curator.onrender.com/",
     "https://movie-curator.onrender.com/dashboard",
+    "https://movie-curator.onrender.com/login",
+    "https://movie-curator.onrender.com/register",
     "https://movie-curator.onrender.com/*",
     "https://api.themoviedb.org",
     "https://onrender.com",
