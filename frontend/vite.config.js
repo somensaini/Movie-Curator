@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   server: {
     proxy: {
-      "/api/v1": "https://letterboxd-clone-api.onrender.com/",
+      "/api/v1": "https://movie-curator.onrender.com/",
     },
   },
   plugins: [react()],

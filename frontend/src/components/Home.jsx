@@ -12,7 +12,7 @@ const Home = () => {
         axios({
             method: "GET",
             withCredentials: true,
-            url: "https://letterboxd-clone-api.onrender.com/dashboard"
+            url: "https://movie-curator-api.onrender.com//dashboard"
         }).then((res) => {
             setData(res.data)
         }).catch((err) => {

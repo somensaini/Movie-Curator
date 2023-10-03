@@ -24,7 +24,7 @@ const Login = () => {
                 password: password,
             },
             withCredentials: true,
-            url: "https://letterboxd-clone-api.onrender.com/login",
+            url: "https://movie-curator-api.onrender.com/login",
         }).then((res) => {
             if (res.status === 200){
                 navigate('/dashboard')

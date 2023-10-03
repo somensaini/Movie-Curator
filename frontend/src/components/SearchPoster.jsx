@@ -14,7 +14,7 @@ export default function SearchPoster(props) {
         let config = {
             method: 'patch',
             maxBodyLength: Infinity,
-            url: "https://letterboxd-clone-api.onrender.com/list",
+            url: "https://movie-curator-api.onrender.com/list",
             headers: { 
                 'Content-Type': 'application/json'
         },
@@ -33,7 +33,7 @@ export default function SearchPoster(props) {
         let config = {
             method: 'patch',
             maxBodyLength: Infinity,
-            url: "https://letterboxd-clone-api.onrender.com/favorite",
+            url: "https://movie-curator-api.onrender.com/favorite",
             headers: { 
                 'Content-Type': 'application/json'
         },

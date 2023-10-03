@@ -29,7 +29,7 @@ const Register = () => {
                 email: email
             },
             withCredentials: true,
-            url: "https://letterboxd-clone-api.onrender.com/register",
+            url: "https://movie-curator-api.onrender.com/register",
         }).then((res) => {
             if (res.status === 200){
                 navigate('/login')
