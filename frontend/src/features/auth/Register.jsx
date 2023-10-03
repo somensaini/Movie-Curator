@@ -33,6 +33,7 @@ const Register = () => {
                 email: email
             },
             url: "https://movie-curator-api.onrender.com/register",
+            withCredentials: false,
         }).then((res) => {
             if (res.status === 200){
                 navigate('/login')
