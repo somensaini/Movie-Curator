@@ -28,7 +28,7 @@ app.use(logger)
 
 // CORS
 app.use(cors({
-  origin: "https://movie-curator.onrender.com/",
+  origin: "https://movie-curator.onrender.com",
   headers: ["Content-Type"],
   credentials: true,
 }))
