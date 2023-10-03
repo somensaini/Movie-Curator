@@ -12,7 +12,7 @@ const corsOptions = {
     methods: ['GET','POST','HEAD','PUT','PATCH','DELETE'],
     allowedHeaders: ['Content-Type', 'Access-Control-Allow-Origin'],
     exposedHeaders: ['Content-Type'],
-    optionsSuccessStatus: 200
+    optionsSuccessStatus: 200,
 }
 
 module.exports = corsOptions 

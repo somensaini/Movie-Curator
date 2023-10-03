@@ -1,5 +1,4 @@
 const allowedOrigins = [
-    "*",
     "https://movie-curator.onrender.com",
     "https://movie-curator.onrender.com/",
     "https://movie-curator.onrender.com/dashboard",
