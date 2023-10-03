@@ -40,11 +40,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 // CORS
-// app.use(cors(corsOptions));
-app.use(cors({
-  origin: 'https://movie-curator.onrender.com',
-  credentials: true,
-}));
+app.use(cors(corsOptions));
 
 // Cookie Parser
 app.use(cookieParser("keyboard cat"))
