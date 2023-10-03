@@ -26,6 +26,10 @@ connectDB()
 app.use(errorHandler)
 app.use(logger)
 
+// Passport middleware
+app.use(passport.initialize())
+app.use(passport.session())
+
 // CORS
 // app.use(cors(corsOptions));
 app.use(cors({
@@ -44,10 +48,6 @@ app.use(
 
 // Cookie Parser
 app.use(cookieParser("keyboard cat"))
-
-// Passport middleware
-app.use(passport.initialize())
-app.use(passport.session())
 
 // This will send the user all static files in the public directory when they are on the root page
 app.use(express.static('public'))
