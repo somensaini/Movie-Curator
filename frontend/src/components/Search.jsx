@@ -15,7 +15,7 @@ const Search = () => {
         axios({
             method: "GET",
             withCredentials: true,
-            url: "http://localhost:3500/dashboard"
+            url: "https://letterboxd-clone-api.onrender.com/dashboard"
         }).then((res) => {
             setUsername(res.data.username)
         }).catch((err) => {

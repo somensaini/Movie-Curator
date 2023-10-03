@@ -35,7 +35,7 @@ const DashHeader = () => {
                             axios({
                                 method: "POST",
                                 withCredentials: true,
-                                url: "http://localhost:3500/logout",
+                                url: "https://letterboxd-clone-api.onrender.com/logout",
                             }).then((res) => {
                                 if (res.status === 200){
                                     navigate('/')

@@ -14,7 +14,7 @@ const List = () => {
         axios({
             method: "GET",
             withCredentials: true,
-            url: "http://localhost:3500/dashboard"
+            url: "https://letterboxd-clone-api.onrender.com/dashboard"
         }).then((res) => {
             setUserName(res.data.username)
         }).catch((err) => {
@@ -30,7 +30,7 @@ const List = () => {
         let config = {
             method: 'post',
             maxBodyLength: Infinity,
-            url: 'http://localhost:3500/list',
+            url: "https://letterboxd-clone-api.onrender.com/list",
             headers: { 
               'Content-Type': 'application/json'
             },
