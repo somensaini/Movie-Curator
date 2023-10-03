@@ -8,7 +8,7 @@ const { logger, logEvents } = require('./middleware/logger')
 const errorHandler = require('./middleware/errorHandler')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
-// const corsOptions = require('./config/corsOptions')
+const corsOptions = require('./config/corsOptions')
 const connectDB = require('./config/database')
 const PORT = process.env.PORT || 3500
 require('dotenv').config()
@@ -27,14 +27,8 @@ app.use(errorHandler)
 app.use(logger)
 
 // CORS
-const corsOpts = {
-    origin: 'https://movie-curator.onrender.com',
-    credentials: true,
-    methods: ['GET','POST','HEAD','PUT','PATCH','DELETE'],
-    allowedHeaders: ['Content-Type', 'Access-Control-Allow-Origin'],
-    exposedHeaders: ['Content-Type']
-};
-app.use(cors(corsOpts));
+
+app.use(cors(corsOptions));
 
 // Express Sessions
 app.use(
