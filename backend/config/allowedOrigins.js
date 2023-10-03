@@ -1,5 +1,5 @@
 const allowedOrigins = [
-    "https://letterboxd-clone.onrender.com/"
+    "https://movie-curator.onrender.com/"
 ]
 
 module.exports = allowedOrigins
