@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   server: {
     proxy: {
-      "/api/v1": "http://localhost:3500/",
+      "/api/v1": "https://letterboxd-clone-api.onrender.com/",
     },
   },
   plugins: [react()],
