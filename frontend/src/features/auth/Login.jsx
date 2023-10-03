@@ -19,6 +19,10 @@ const Login = () => {
         e.preventDefault()
         axios({
             method: "POST",
+            headers: {
+                'Content-Type': 'application/json',     
+                accept: 'application/json',           
+              },
             data: {
                 username: username,
                 password: password,
