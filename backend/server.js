@@ -26,6 +26,15 @@ connectDB()
 app.use(errorHandler)
 app.use(logger)
 
+// Express Sessions
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: true,
+    saveUninitialized: false,
+  })
+);
+
 // Passport middleware
 app.use(passport.initialize())
 app.use(passport.session())
@@ -36,15 +45,6 @@ app.use(cors({
   origin: 'https://movie-curator.onrender.com',
   credentials: true,
 }));
-
-// Express Sessions
-app.use(
-  session({
-    secret: "keyboard cat",
-    resave: true,
-    saveUninitialized: false,
-  })
-);
 
 // Cookie Parser
 app.use(cookieParser("keyboard cat"))
