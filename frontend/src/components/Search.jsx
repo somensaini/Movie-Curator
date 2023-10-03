@@ -14,7 +14,6 @@ const Search = () => {
     useEffect(() => {
         axios({
             method: "GET",
-            withCredentials: true,
             url: "https://movie-curator-api.onrender.com/dashboard"
         }).then((res) => {
             setUsername(res.data.username)

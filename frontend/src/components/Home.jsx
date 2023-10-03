@@ -11,7 +11,6 @@ const Home = () => {
     useEffect(() => {
         axios({
             method: "GET",
-            withCredentials: true,
             url: "https://movie-curator-api.onrender.com/dashboard"
         }).then((res) => {
             setData(res.data)

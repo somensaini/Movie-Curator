@@ -16,7 +16,6 @@ const Profile = () => {
     useEffect(() => {
         axios({
             method: "GET",
-            withCredentials: true,
             url: "https://movie-curator-api.onrender.com/dashboard"
         }).then((res) => {
             setUserName(res.data.username)

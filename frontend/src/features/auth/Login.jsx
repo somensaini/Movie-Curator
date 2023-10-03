@@ -23,7 +23,6 @@ const Login = () => {
                 username: username,
                 password: password,
             },
-            withCredentials: true,
             url: "https://movie-curator-api.onrender.com/login",
         }).then((res) => {
             if (res.status === 200){

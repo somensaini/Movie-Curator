@@ -34,7 +34,6 @@ const DashHeader = () => {
                             e.preventDefault()
                             axios({
                                 method: "POST",
-                                withCredentials: true,
                                 url: "https://movie-curator-api.onrender.com/logout",
                             }).then((res) => {
                                 if (res.status === 200){
