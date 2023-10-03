@@ -4,7 +4,6 @@ const mongoose = require('mongoose')
 const passport = require('passport')
 const path = require('path')
 const session = require("cookie-session");
-const MongoStore = require("connect-mongo")(session);
 const { logger, logEvents } = require('./middleware/logger')
 const errorHandler = require('./middleware/errorHandler')
 const cookieParser = require('cookie-parser')
