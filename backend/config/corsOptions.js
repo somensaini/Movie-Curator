@@ -9,8 +9,9 @@ const corsOptions = {
         }
     },
     credentials: true,
-    methids: ['GET','POST','HEAD','PUT','PATCH','DELETE'],
-    allowedHeaders: ['Content-Type', 'Access-Control-Allow-Origin'],
+    methods: ['GET','POST','HEAD','PUT','PATCH','DELETE'],
+    allowedHeaders: ['Content-Type'],
+    'Access-Control-Allow-Origin': true,
     exposedHeaders: ['Content-Type'],
     optionsSuccessStatus: 200
 }
