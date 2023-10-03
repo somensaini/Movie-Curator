@@ -24,7 +24,7 @@ const Login = () => {
                 password: password,
             },
             withCredentials: true,
-            url: "http://localhost:3500/login",
+            url: "https://letterboxd-clone-api.onrender.com/login",
         }).then((res) => {
             if (res.status === 200){
                 navigate('/dashboard')
