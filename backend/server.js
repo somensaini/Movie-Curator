@@ -72,16 +72,16 @@ app.use('/login', require('./routes/loginRoutes'))
 app.use('/logout', require('./routes/logoutRoutes'))
 
 // For all other cases it will send the 404 page
-app.all('*', (req, res) => {
-  res.status(404)
-  if (req.accepts('html')) {
-      res.sendFile(path.join(__dirname, 'views', '404.html'))
-  } else if (req.accepts('json')) {
-      res.json({ message: '404 Not Found' })
-  } else {
-      res.type('txt').send('404 Not Found')
-  }
-})
+// app.all('*', (req, res) => {
+//   res.status(404)
+//   if (req.accepts('html')) {
+//       res.sendFile(path.join(__dirname, 'views', '404.html'))
+//   } else if (req.accepts('json')) {
+//       res.json({ message: '404 Not Found' })
+//   } else {
+//       res.type('txt').send('404 Not Found')
+//   }
+// })
 
 // Console log when connected and if any errors occur
 // The event will only be called once
