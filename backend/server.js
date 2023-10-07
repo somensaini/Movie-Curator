@@ -32,8 +32,9 @@ app.use(cors(corsOptions));
 app.use(
   session({
     secret: "keyboard cat",
-    resave: true,
+    resave: false,
     saveUninitialized: false,
+    cookie: { secure: true }
   })
 );
 
