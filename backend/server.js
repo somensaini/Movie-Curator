@@ -1,19 +1,18 @@
+require('dotenv').config()
 const express = require('express')
 const app = express();
-const mongoose = require('mongoose')
-const passport = require('passport')
 const path = require('path')
-const session = require("cookie-session");
 const { logger, logEvents } = require('./middleware/logger')
 const errorHandler = require('./middleware/errorHandler')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const corsOptions = require('./config/corsOptions')
 const connectDB = require('./config/database')
-const PORT = process.env.PORT || 3500
-require('dotenv').config()
+const mongoose = require('mongoose')
+const passport = require('passport')
 require("./config/passport")(passport);
-
+const session = require("cookie-session");
+const PORT = process.env.PORT || 3500
 
 // Use the JSON middleware function built into Express. It parses incoming JSON requests and puts the parsed data in req.body
 app.use(express.json())
@@ -25,6 +24,9 @@ connectDB()
 // Error Handler and Logger
 app.use(errorHandler)
 app.use(logger)
+
+// CORS
+app.use(cors(corsOptions));
 
 // Express Sessions
 app.use(
@@ -38,22 +40,6 @@ app.use(
 // Passport middleware
 app.use(passport.initialize())
 app.use(passport.session())
-
-// CORS
-// app.use(cors(corsOptions));
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://movie-curator.onrender.com');
-  // res.setHeader('Access-Control-Allow-Origin', 'https://movie-curator.onrender.com/login');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-
-  if (req.method === 'OPTIONS') {
-    res.sendStatus(200);
-  } else {
-    next()
-  }
-})
 
 // Cookie Parser
 app.use(cookieParser("keyboard cat"))
