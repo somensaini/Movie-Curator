@@ -9,17 +9,26 @@ const Home = () => {
 
     // Get the User's username and store it in data
     useEffect(() => {
-        axios({
-            method: "GET",
-            url: "https://movie-curator-api.onrender.com/dashboard"
-        }).then((res) => {
-            res.json()
-        }).then((res) => {
-            console.log(res)
-            setUsername(res.username)
-        }).catch((err) => {
-            console.log(err.response.data)
-        })
+        // axios({
+        //     method: "GET",
+        //     url: "https://movie-curator-api.onrender.com/dashboard"
+        // }).then((res) => {
+        //     res.json()
+        // }).then((res) => {
+        //     console.log(res)
+        //     setUsername(res.username)
+        // }).catch((err) => {
+        //     console.log(err.response.data)
+        // })
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+          };
+          
+          fetch("https://movie-curator-api.onrender.com/dashboard", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
     }, [])
 
     //Fetch API for Discover
