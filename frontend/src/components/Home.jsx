@@ -5,7 +5,7 @@ import axios from 'axios'
 const Home = () => {
     const [discover, setDiscover] = useState([])
     const [popular, setPopular] = useState([])
-    const [data, setData] = useState(null)
+    const [username, setUsername] = useState(null)
 
     // Get the User's username and store it in data
     useEffect(() => {
@@ -13,7 +13,7 @@ const Home = () => {
             method: "GET",
             url: "https://movie-curator-api.onrender.com/dashboard"
         }).then((res) => {
-            setData(res.data)
+            setUsername(res.username)
         }).catch((err) => {
             console.log(err.response.data)
         })
@@ -69,7 +69,7 @@ const Home = () => {
 
     const content = (
         <>    
-            <h1 className = "welcome">Welcome {data ? `back ${data.username[0].toUpperCase() + data.username.slice(1)}` : 'to Letterboxd'}</h1>
+            <h1 className = "welcome">Welcome {username ? `back ${username[0].toUpperCase() + username.slice(1)}` : 'to Letterboxd'}</h1>
 
             <div className = "section--container--home">
                 
