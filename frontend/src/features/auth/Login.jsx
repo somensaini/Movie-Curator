@@ -15,27 +15,49 @@ const Login = () => {
         setPassword(e.target.value)
     }
 
+    const data = {
+        username: username,
+        password: password,
+      }
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     axios({
+    //         method: "POST",
+    //         headers: {
+    //             'Content-Type': 'application/json',     
+    //             accept: 'application/json',           
+    //           },
+    //         data: {
+    //             username: username,
+    //             password: password,
+    //         },
+    //         url: "https://movie-curator-api.onrender.com/login",
+    //         withCredentials: false
+    //     }).then((res) => {
+    //         if (res.status === 200){
+    //             navigate('/dashboard')
+    //         }
+    //     })
+    // }
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios({
+        fetch("https://movie-curator-api.onrender.com/login", {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json',     
-                accept: 'application/json',           
-              },
-            data: {
-                username: username,
-                password: password,
+                'Content-Type': 'application/json',
+                'accept': 'application/json',
             },
-            url: "https://movie-curator-api.onrender.com/login",
-            withCredentials: false
+            body: JSON.stringify(data)
         }).then((res) => {
             if (res.status === 200){
                 navigate('/dashboard')
             }
+        }).catch((err) => {
+            console.log(err)
         })
     }
-
+    
     return (
         <>
             <form onSubmit={handleSubmit} className='login--form'>
