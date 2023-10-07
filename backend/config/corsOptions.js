@@ -1,5 +1,3 @@
-module.exports = corsOptions 
-
 const allowedOrigins = require('./allowedOrigins')
 
 const corsOptions = {
