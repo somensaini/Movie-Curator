@@ -13,6 +13,8 @@ const Home = () => {
             method: "GET",
             url: "https://movie-curator-api.onrender.com/dashboard"
         }).then((res) => {
+            res.json()
+        }).then((res) => {
             console.log(res)
             setUsername(res.username)
         }).catch((err) => {
