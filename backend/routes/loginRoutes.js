@@ -5,7 +5,7 @@ const passport = require('passport');
 
 router.route('/')
     // .post(loginController.postLogin)
-    .post('/', passport.authenticate('local', {
+    .post(passport.authenticate('local', {
         successRedirect: '/dashboard',
         failureRedirect: '/login',
       }));
