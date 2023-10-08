@@ -4,6 +4,7 @@ const passport = require('passport')
 // Retrieve the logged in User's username
 const getDashboard = (req, res, next) => {
   const username = req.user.username
+  res.setHeader('Content-Type', 'application/json');
   res.json({username})
 }
 

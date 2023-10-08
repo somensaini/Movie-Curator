@@ -28,13 +28,11 @@ const Home = () => {
           fetch("https://movie-curator-api.onrender.com/dashboard", requestOptions)
           .then(response => response.json())
           .then(data => {
-            // Access the username from the JSON response
-            console.log(data);
+            console.log(data)
           })
           .catch(error => {
             console.error('Error fetching data:', error);
-          });
-            
+          })
     }, [])
 
     //Fetch API for Discover
