@@ -3,31 +3,32 @@ import axios from 'axios'
 import Poster from "./Poster"
 
 const Profile = () => {
-    const [username, setUserName] = useState(null)
+    // const [username, setUserName] = useState(null)
     const [userListData, setUserListData] = useState(null)
     const [userRecentData, setUserRecentData] = useState(null)
     const [favoritesPosters, setFavoritesPosters] = useState([])
     const [recentPosters, setRecentPosters] = useState([])
+    const userData = JSON.parse(sessionStorage.getItem('user'));
     
     let favorites = []
     let recents = []
 
     // Get the username
-    useEffect(() => {
-        axios({
-            method: "GET",
-            url: "https://movie-curator-api.onrender.com/dashboard"
-        }).then((res) => {
-            setUserName(res.data.username)
-        }).catch((err) => {
-            console.log(err)
-        })
-    }, [])
+    // useEffect(() => {
+    //     axios({
+    //         method: "GET",
+    //         url: "https://movie-curator-api.onrender.com/dashboard"
+    //     }).then((res) => {
+    //         setUserName(res.data.username)
+    //     }).catch((err) => {
+    //         console.log(err)
+    //     })
+    // }, [])
 
     // Get the User's list and filter the list to include only favorites
     useEffect(() => {
         let data = JSON.stringify({
-            "username": username
+            "username": userData.username
         })
         let config = {
             method: 'post',
@@ -53,7 +54,7 @@ const Profile = () => {
         .catch((err) => {
           console.log(err)
         })
-    }, [username])
+    }, [])
     
     // Display the first 5 favorites on the page
     useEffect(() => {

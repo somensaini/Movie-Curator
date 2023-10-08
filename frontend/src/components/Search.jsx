@@ -6,21 +6,23 @@ const Search = () => {
     const [results, setResults] = useState(null)
     const [data, setData] = useState('')
     const [searchState, setSearchState] = useState(false)
-    const [username, setUsername] = useState(null)
+    // const [username, setUsername] = useState(null)
+    const userData = JSON.parse(sessionStorage.getItem('user'));
+
 
     let query, searchElements
 
     //Get the username
-    useEffect(() => {
-        axios({
-            method: "GET",
-            url: "https://movie-curator-api.onrender.com/dashboard"
-        }).then((res) => {
-            setUsername(res.data.username)
-        }).catch((err) => {
-            console.log(err)
-        })
-        }, [])
+    // useEffect(() => {
+    //     axios({
+    //         method: "GET",
+    //         url: "https://movie-curator-api.onrender.com/dashboard"
+    //     }).then((res) => {
+    //         setUsername(res.data.username)
+    //     }).catch((err) => {
+    //         console.log(err)
+    //     })
+    //     }, [])
     
     //Get the movie data from the TMDB API and store it in data
     useEffect(() => {
@@ -51,7 +53,7 @@ const Search = () => {
                 year = {searchElement.release_date.split('-')[0]}
                 description = {searchElement.overview}
                 id = {searchElement.id}
-                username = {username}
+                username = {userData.username}
             />
         ))
     }

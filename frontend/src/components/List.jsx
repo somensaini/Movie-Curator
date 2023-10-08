@@ -3,28 +3,29 @@ import axios from 'axios'
 import Poster from "./Poster"
 
 const List = () => {
-    const [username, setUserName] = useState(null)
+    // const [username, setUserName] = useState(null)
     const [listData, setListData] = useState(null)
     const [data, setData] = useState([])
+    const userData = JSON.parse(sessionStorage.getItem('user'));
     
     let posters = []
 
     // Get the username and store it in username
-    useEffect(() => {
-        axios({
-            method: "GET",
-            url: "https://movie-curator-api.onrender.com/dashboard"
-        }).then((res) => {
-            setUserName(res.data.username)
-        }).catch((err) => {
-            console.log(err)
-        })
-    }, [])
+    // useEffect(() => {
+    //     axios({
+    //         method: "GET",
+    //         url: "https://movie-curator-api.onrender.com/dashboard"
+    //     }).then((res) => {
+    //         setUserName(res.data.username)
+    //     }).catch((err) => {
+    //         console.log(err)
+    //     })
+    // }, [])
 
     // Get the User's list data (movieIDs) and store it in listData
     useEffect(() => {
         let data = JSON.stringify({
-            "username": username
+            "username": userData.username
         });
         let config = {
             method: 'post',
@@ -42,7 +43,7 @@ const List = () => {
         .catch((err) => {
           console.log(err)
         });
-    }, [username])
+    }, [])
 
     // Get the image links for each poster from TMDB using their IDs.
     // Set the Data variable equal to the previous values and the image links generated in the for loop.
