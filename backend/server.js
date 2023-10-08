@@ -49,12 +49,12 @@ app.use(cookieParser("keyboard cat"))
 app.use(express.static('public'))
 
 // Routes
+app.use('/login', require('./routes/loginRoutes'))
 app.use('/dashboard', require('./routes/dashboardRoutes'))
 app.use('/user', require('./routes/userRoutes'))
 app.use('/list', require('./routes/listRoutes'))
 app.use('/favorite', require('./routes/favoriteRoutes'))
 app.use('/register', require('./routes/registerRoutes'))
-app.use('/login', require('./routes/loginRoutes'))
 app.use('/logout', require('./routes/logoutRoutes'))
 app.use('/', require('./routes/root'))
 
