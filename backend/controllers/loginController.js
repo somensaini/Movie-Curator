@@ -4,12 +4,18 @@ const passport = require('passport')
 // Authenticate the user
 const postLogin = (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
-    if (err) throw err;
-    if (!user) res.send("No User Exists");
-    else {
+    if (err) {
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+
+    if (!user) {
+      return res.status(401).json({ error: "Authentication Failed" });
+    } else {
       req.logIn(user, (err) => {
-        if (err) throw err;
-        res.send("Successfully Authenticated");
+        if (err) {
+          return res.status(500).json({ error: "Internal Server Error" });
+        }
+        return res.status(200).json({ message: "Successfully Authenticated", user });
       });
     }
   })(req, res, next);
