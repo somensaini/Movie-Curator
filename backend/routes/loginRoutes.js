@@ -4,10 +4,6 @@ const passport = require('passport');
 // const loginController = require('../controllers/loginController.js')
 
 router.route('/')
-    // .post(loginController.postLogin)
-    .post(passport.authenticate('local', {
-        successRedirect: '/dashboard',
-        failureRedirect: '/login',
-      }));
+    .post(loginController.postLogin)
 
 module.exports = router

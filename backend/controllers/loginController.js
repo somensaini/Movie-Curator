@@ -15,6 +15,11 @@ const postLogin = (req, res, next) => {
   })(req, res, next);
 };
 
+// (passport.authenticate('local', {
+//   successRedirect: '/dashboard',
+//   failureRedirect: '/login',
+// }));
+
 module.exports = {
   postLogin  
 }
