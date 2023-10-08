@@ -23,14 +23,15 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            fetch("https://movie-curator-api.onrender.com/login", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'accept': 'application/json',
-            },
-            body: JSON.stringify(data)
-        })
+            const response = await fetch("https://movie-curator-api.onrender.com/login", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'accept': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            
         if (response.status === 200) {
             // Session establishment was successful
             const responseData = await response.json();
