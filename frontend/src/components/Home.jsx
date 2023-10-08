@@ -9,30 +9,21 @@ const Home = () => {
 
     // Get the User's username and store it in data
     useEffect(() => {
-        // axios({
-        //     method: "GET",
-        //     url: "https://movie-curator-api.onrender.com/dashboard"
-        // }).then((res) => {
-        //     res.json()
-        // }).then((res) => {
-        //     console.log(res)
-        //     setUsername(res.username)
-        // }).catch((err) => {
-        //     console.log(err.response.data)
-        // })
-        var requestOptions = {
-            method: 'GET',
-            credentials: 'include'
-          };
-          
-          fetch("https://movie-curator-api.onrender.com/dashboard", requestOptions)
-          .then(response => response.json())
-          .then(data => {
-            console.log(data)
-          })
-          .catch(error => {
-            console.error('Error fetching data:', error);
-          })
+        const fetchData = async () => {
+            try {
+                const requestOptions = {
+                    method: 'GET',
+                    credentials: 'include'
+                }
+    
+                const response = await fetch("https://movie-curator-api.onrender.com/dashboard", requestOptions)
+                const jsonData = await response.json()
+                console.log(jsonData)
+            } catch (error) {
+                console.error('Error fetching data: ', error)
+            }
+        }
+        fetchData()
     }, [])
 
     //Fetch API for Discover
