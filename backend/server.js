@@ -11,7 +11,7 @@ const connectDB = require('./config/database')
 const mongoose = require('mongoose')
 const passport = require('passport')
 require("./config/passport")(passport);
-const session = require("cookie-session");
+const session = require("express-session");
 const PORT = process.env.PORT || 3500
 
 // Use the JSON middleware function built into Express. It parses incoming JSON requests and puts the parsed data in req.body
@@ -34,7 +34,6 @@ app.use(
     secret: "keyboard cat",
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: true }
   })
 );
 

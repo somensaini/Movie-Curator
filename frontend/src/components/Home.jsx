@@ -22,7 +22,7 @@ const Home = () => {
         // })
         var requestOptions = {
             method: 'GET',
-            redirect: 'follow'
+            credentials: 'include'
           };
           
           fetch("https://movie-curator-api.onrender.com/dashboard", requestOptions)
