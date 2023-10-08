@@ -6,10 +6,10 @@ const Home = () => {
     const [discover, setDiscover] = useState([])
     const [popular, setPopular] = useState([])
     // const [username, setUsername] = useState(JSON.parse(sessionStorage.getItem('user')))
+    const userData = JSON.parse(sessionStorage.getItem('user'));
 
     // Get the User's username and store it in data
     useEffect(() => {
-        const userData = JSON.parse(sessionStorage.getItem('user'));
         console.log(`Username: ${userData.username}`);
         // const fetchData = async () => {
         //     try {
@@ -78,7 +78,7 @@ const Home = () => {
 
     const content = (
         <>    
-            <h1 className = "welcome">Welcome {userData.username ? `back ${userData.username[0].toUpperCase() + userData.username.slice(1)}` : 'to Letterboxd'}</h1>
+            <h1 className = "welcome">Welcome {userData ? `back ${userData.username[0].toUpperCase() + userData.username.slice(1)}` : 'to Letterboxd'}</h1>
 
             <div className = "section--container--home">
                 
