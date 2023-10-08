@@ -18,22 +18,25 @@ const handleLogout = async () => {
   };
 
   const DashHeader = () => {
-    return (
-      <nav>
-        <ul>
-          <li className="header--nav--links">
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-          <li className="header--nav--links">
-            <Link to="/profile">Profile</Link>
-          </li>
-          <li className="header--nav--links">
-            <button onClick={handleLogout}>Logout</button>
-          </li>
-        </ul>
-      </nav>
-    );
-  };
+    const content = (
+        <header>
+            <nav className = "header--nav">
+                <ul>
+                    <li className="header--nav--links">
+                        <Link to="/dashboard">Dashboard</Link>
+                    </li>
+                    <li className="header--nav--links">
+                        <Link to="/profile">Profile</Link>
+                    </li>
+                    <li className="header--nav--links">
+                        <button onClick={handleLogout}>Logout</button>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    )
+    return content
+  }
   
   export default DashHeader;
 
