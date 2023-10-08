@@ -18,45 +18,38 @@ const Login = () => {
     const data = {
         username: username,
         password: password,
-      }
-    // const handleSubmit = (e) => {
-    //     e.preventDefault()
-    //     axios({
-    //         method: "POST",
-    //         headers: {
-    //             'Content-Type': 'application/json',     
-    //             accept: 'application/json',           
-    //           },
-    //         data: {
-    //             username: username,
-    //             password: password,
-    //         },
-    //         url: "https://movie-curator-api.onrender.com/login",
-    //         withCredentials: false
-    //     }).then((res) => {
-    //         if (res.status === 200){
-    //             navigate('/dashboard')
-    //         }
-    //     })
-    // }
+    }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        fetch("https://movie-curator-api.onrender.com/login", {
+        try {
+            fetch("https://movie-curator-api.onrender.com/login", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
                 'accept': 'application/json',
             },
             body: JSON.stringify(data)
-        }).then((res) => {
-            if (res.status === 200){
-                navigate('/dashboard')
-            }
-        }).catch((err) => {
-            console.log(err)
         })
-    }
+        if (response.status === 200) {
+            // Session establishment was successful
+            const responseData = await response.json();
+      
+            // Store session data, if available, in a client-side session storage
+            if (responseData.user) {
+              sessionStorage.setItem('user', JSON.stringify(responseData.user));
+            }
+      
+            // Redirect to the dashboard or desired page
+            navigate('/dashboard');
+          } else {
+            // Handle login failure, e.g., show an error message
+            console.error('Login failed');
+          }
+        } catch (error) {
+          console.error('Error logging in:', error);
+        }
+    }       
     
     return (
         <>
