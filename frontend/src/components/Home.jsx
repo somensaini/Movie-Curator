@@ -5,25 +5,27 @@ import axios from 'axios'
 const Home = () => {
     const [discover, setDiscover] = useState([])
     const [popular, setPopular] = useState([])
-    const [username, setUsername] = useState(null)
+    // const [username, setUsername] = useState(JSON.parse(sessionStorage.getItem('user')))
 
     // Get the User's username and store it in data
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const requestOptions = {
-                    method: 'GET',
-                    credentials: 'include'
-                }
+        const userData = JSON.parse(sessionStorage.getItem('user'));
+        console.log(`Username: ${userData.username}`);
+        // const fetchData = async () => {
+        //     try {
+        //         const requestOptions = {
+        //             method: 'GET',
+        //             credentials: 'include'
+        //         }
     
-                const response = await fetch("https://movie-curator-api.onrender.com/dashboard", requestOptions)
-                const jsonData = await response.json()
-                console.log(jsonData)
-            } catch (error) {
-                console.error('Error fetching data: ', error)
-            }
-        }
-        fetchData()
+        //         const response = await fetch("https://movie-curator-api.onrender.com/dashboard", requestOptions)
+        //         const jsonData = await response.json()
+        //         console.log(jsonData)
+        //     } catch (error) {
+        //         console.error('Error fetching data: ', error)
+        //     }
+        // }
+        // fetchData()
     }, [])
 
     //Fetch API for Discover
@@ -76,7 +78,7 @@ const Home = () => {
 
     const content = (
         <>    
-            <h1 className = "welcome">Welcome {username ? `back ${username[0].toUpperCase() + username.slice(1)}` : 'to Letterboxd'}</h1>
+            <h1 className = "welcome">Welcome {userData.username ? `back ${userData.username[0].toUpperCase() + userData.username.slice(1)}` : 'to Letterboxd'}</h1>
 
             <div className = "section--container--home">
                 
