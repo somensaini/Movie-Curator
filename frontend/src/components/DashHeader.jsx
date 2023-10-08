@@ -1,42 +1,53 @@
 import { useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
 
-const navigate = useNavigate()
-const handleLogout = async () => {
-    try {
-      // Clear session storage
-      sessionStorage.removeItem('user');
-  
-      // Make a POST request to the logout endpoint
-      await axios.post("https://movie-curator-api.onrender.com/logout");
-  
-      // Redirect to the home page
-      navigate('/');
-    } catch (error) {
-      console.error('Error logging out:', error);
-    }
-  };
-
-  const DashHeader = () => {
+const DashHeader = () => {
+    const navigate = useNavigate()
     const content = (
         <header>
             <nav className = "header--nav">
-                <ul>
-                    <li className="header--nav--links">
-                        <Link to="/dashboard">Dashboard</Link>
-                    </li>
-                    <li className="header--nav--links">
-                        <Link to="/profile">Profile</Link>
-                    </li>
-                    <li className="header--nav--links">
-                        <button onClick={handleLogout}>Logout</button>
-                    </li>
+                
+                {/* Link to the Dashboard */}
+                <Link to="/dashboard">
+                    <h1 className = "site--logo">Letterboxd</h1>
+                </Link>
+
+                <ul className = "header--nav--items">
+                    {/* Link to the User's profile */}
+                    <Link to="/dashboard/user">
+                        <li className = "header--nav--links">PROFILE</li>
+                    </Link>
+
+                    {/* Link to the User's list */}
+                    <Link to="/dashboard/list">
+                        <li className = "header--nav--links">MY LIST</li>
+                    </Link>
+
+                    {/* Link to the Search page */}
+                    <Link to="/dashboard/search">
+                        <li className = "header--nav--links">SEARCH</li>
+                    </Link>
+
+                    {/* Make a POST request on the /logout route to log the User out and redirect to the homepage */}
+                    <Link 
+                        onClick = { (e) => {
+                            e.preventDefault()
+                            axios({
+                                method: "POST",
+                                url: "https://movie-curator-api.onrender.com/logout",
+                            }).then((res) => {
+                                if (res.status === 200){
+                                    navigate('/')
+                                }
+                            })
+                            }}>
+                        <li className = "header--nav--links">LOGOUT</li>
+                    </Link>
                 </ul>
             </nav>
         </header>
     )
     return content
-  }
-  
-  export default DashHeader;
+}
+export default DashHeader
 
