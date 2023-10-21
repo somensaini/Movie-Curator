@@ -3,7 +3,6 @@
 const postLogout = (req, res, next) => {
     req.logout(function(err) {
         if (err) { return next(err); }
-        // res.send("Logout Success")
         return res.status(200).json({ message: "Logout Success" });
     });
 };
