@@ -36,9 +36,13 @@ const DashHeader = () => {
                                 method: "POST",
                                 url: "https://movie-curator-api.onrender.com/logout",
                             }).then((res) => {
-                                if (res.status === 200){
-                                    navigate('/')
-                                }
+                                if (res.status === 200) {
+                                    sessionStorage.clear()
+                                    navigate('/login');
+                                  } else {
+                                    // Handle login failure, e.g., show an error message
+                                    console.error('Logout failed');
+                                  }
                             })
                             }}>
                         <li className = "header--nav--links">LOGOUT</li>
