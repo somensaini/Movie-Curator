@@ -8,7 +8,7 @@ const Home = () => {
     let userData
     // const [username, setUsername] = useState(JSON.parse(sessionStorage.getItem('user')))
     if (sessionStorage.getItem('user') === null){
-        sessionStorage.setItem('user', '')
+        sessionStorage.setItem('user', JSON.stringify(''))
     }else{
         userData = JSON.parse(sessionStorage.getItem('user'));
     }
