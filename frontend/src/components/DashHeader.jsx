@@ -38,7 +38,7 @@ const DashHeader = () => {
                             }).then((res) => {
                                 if (res.status === 200) {
                                     sessionStorage.clear()
-                                    navigate('/login')
+                                    navigate('/')
                                   } else {
                                     console.error('Logout failed')
                                   }
