@@ -5,12 +5,18 @@ import axios from 'axios'
 const Home = () => {
     const [discover, setDiscover] = useState([])
     const [popular, setPopular] = useState([])
+    let userData
     // const [username, setUsername] = useState(JSON.parse(sessionStorage.getItem('user')))
-    const userData = JSON.parse(sessionStorage.getItem('user'));
+    if (sessionStorage.getItem('user') === null){
+        sessionStorage.setItem('user', '')
+    }else{
+        userData = JSON.parse(sessionStorage.getItem('user'));
+    }
+    
 
     // Get the User's username and store it in data
-    useEffect(() => {
-        console.log(`Username: ${userData.username}`);
+    // useEffect(() => {
+        // console.log(`Username: ${userData.username}`);
         // const fetchData = async () => {
         //     try {
         //         const requestOptions = {
@@ -26,7 +32,7 @@ const Home = () => {
         //     }
         // }
         // fetchData()
-    }, [])
+    // }, [])
 
     //Fetch API for Discover
     useEffect(() => {
@@ -78,7 +84,7 @@ const Home = () => {
 
     const content = (
         <>    
-            <h1 className = "welcome">Welcome {userData ? `back ${userData.username[0].toUpperCase() + userData.username.slice(1)}` : 'to Letterboxd'}</h1>
+            <h1 className = "welcome">Welcome {(userData !== '') ? `back ${userData.username[0].toUpperCase() + userData.username.slice(1)}` : 'to Letterboxd'}</h1>
 
             <div className = "section--container--home">
                 

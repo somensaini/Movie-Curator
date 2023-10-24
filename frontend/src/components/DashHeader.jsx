@@ -38,10 +38,9 @@ const DashHeader = () => {
                             }).then((res) => {
                                 if (res.status === 200) {
                                     sessionStorage.clear()
-                                    navigate('/login');
+                                    navigate('/login')
                                   } else {
-                                    // Handle login failure, e.g., show an error message
-                                    console.error('Logout failed');
+                                    console.error('Logout failed')
                                   }
                             })
                             }}>
