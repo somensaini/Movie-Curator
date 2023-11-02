@@ -1,7 +1,7 @@
 # Movie Curator
 Movie Curator is a full-stack application that allows users to create and manage a list of movies. It also provides a glance and new and trending movies on the homepage. Users are able to search for movies to add to their list, as well as add them to their favorites.
 
-**Link to project:** 
+**Take a look here:** 
 
 https://movie-curator.onrender.com/
 
