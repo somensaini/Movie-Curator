@@ -1,22 +1,19 @@
-const allowedOrigins = require('./allowedOrigins')
+const allowedOrigins = require("./allowedOrigins")
 
 const corsOptions = {
-    origin: (origin, callback) => {
-        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-            callback(null, true)
-        } else {
-            callback(new Error('Not allowed by CORS'))
-        }
-    },
-    credentials: true,
-    optionsSuccessStatus: 200
+  //   origin: (origin, callback) => {
+  //     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+  //       callback(null, true)
+  //     } else {
+  //       callback(new Error("Not allowed by CORS"))
+  //     }
+  //   },
+  //   credentials: true,
+  //   optionsSuccessStatus: 200,
+  //   allowedHeaders: "Content-Type, Authorization",
+  origin: "http://localhost:5173/login", // Replace with your frontend domain
+  methods: "GET,POST,PUT,DELETE",
+  allowedHeaders: "Content-Type,Authorization",
 }
 
-module.exports = corsOptions 
-
-// origin: 'https://movie-curator.onrender.com',
-// credentials: true,
-// methods: ['GET','POST','HEAD','PUT','PATCH','DELETE'],
-// allowedHeaders: ['Content-Type', 'Access-Control-Allow-Origin'],
-// exposedHeaders: ['Content-Type'],
-// optionsSuccessStatus: 200,
+module.exports = corsOptions

@@ -1,12 +1,12 @@
 require("dotenv").config()
 const express = require("express")
+const cors = require("cors")
+const corsOptions = require("./config/corsOptions")
 const app = express()
 const path = require("path")
 const { logger, logEvents } = require("./middleware/logger")
 const errorHandler = require("./middleware/errorHandler")
 const cookieParser = require("cookie-parser")
-const cors = require("cors")
-const corsOptions = require("./config/corsOptions")
 const connectDB = require("./config/database")
 const mongoose = require("mongoose")
 const passport = require("passport")
@@ -27,8 +27,15 @@ app.use(errorHandler)
 app.use(logger)
 
 // CORS
-app.use(cors(corsOptions))
-
+// app.use(cors(corsOptions))
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+    methods: "GET, POST, PUT, DELETE",
+    allowedHeaders: "Authorization, Content-Type",
+  })
+)
 // Express Sessions
 app.use(
   session({
@@ -58,19 +65,6 @@ app.use("/register", require("./routes/registerRoutes"))
 app.use("/logout", require("./routes/logoutRoutes"))
 app.use("/", require("./routes/root"))
 
-// For all other cases it will send the 404 page
-// app.all('*', (req, res) => {
-//   res.status(404)
-//   if (req.accepts('html')) {
-//       res.sendFile(path.join(__dirname, 'views', '404.html'))
-//   } else if (req.accepts('json')) {
-//       res.json({ message: '404 Not Found' })
-//   } else {
-//       res.type('txt').send('404 Not Found')
-//   }
-// })
-
-// Console log when connected and if any errors occur
 // The event will only be called once
 mongoose.connection.once("open", () => {
   console.log("Connected to MongoDB")
