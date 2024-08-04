@@ -1,37 +1,16 @@
 import { useState, useEffect } from "react"
 import Poster from "./Poster"
-import axios from "axios"
 
 const Home = () => {
   const [discover, setDiscover] = useState([])
   const [popular, setPopular] = useState([])
-  let userData
-  // const [username, setUsername] = useState(JSON.parse(sessionStorage.getItem('user')))
+  let userData = ""
+
   if (sessionStorage.getItem("user") === null) {
     sessionStorage.setItem("user", JSON.stringify(""))
   } else {
     userData = JSON.parse(sessionStorage.getItem("user"))
   }
-
-  // Get the User's username and store it in data
-  // useEffect(() => {
-  // console.log(`Username: ${userData.username}`);
-  // const fetchData = async () => {
-  //     try {
-  //         const requestOptions = {
-  //             method: 'GET',
-  //             credentials: 'include'
-  //         }
-
-  //         const response = await fetch("https://movie-curator-api.onrender.com/dashboard", requestOptions)
-  //         const jsonData = await response.json()
-  //         console.log(jsonData)
-  //     } catch (error) {
-  //         console.error('Error fetching data: ', error)
-  //     }
-  // }
-  // fetchData()
-  // }, [])
 
   //Fetch API for Discover
   useEffect(() => {
