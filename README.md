@@ -5,6 +5,13 @@ Movie Curator is a full-stack application that allows users to create and manage
 
 https://movie-curator.onrender.com/
 
+![image](https://github.com/somensaini/Movie-Curator/assets/40222610/fb50a7e8-ea90-425c-b735-9c7df46b9f55)
+
+![image](https://github.com/somensaini/Movie-Curator/assets/40222610/bc1b66b8-defb-4016-8d1e-bfd8e8177fed)
+
+![image](https://github.com/somensaini/Movie-Curator/assets/40222610/c7307340-d40a-44e1-b0d8-a0e5f8374ed3)
+
+
 ## How It's Made:
 
 **Tech used:** HTML, CSS, JavaScript, MongoDB, Express.js, React, Node.js.
